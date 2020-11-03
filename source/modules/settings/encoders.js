@@ -1,9 +1,10 @@
 /**
  * 中国蚁剑::编码器管理
  * 创建：2017-05-30
- * 更新：2018-08-19
+ * 更新：2020-11-03
  * 作者：Virink <virink@outlook.com>
  * 作者：Medici.Yan <Medici.Yan@gmail.com>
+ * 作者：yzddMr6 <yzddmr6@gmail.com>
  */
 
 const LANG = antSword['language']['settings']['encoders'];
@@ -59,6 +60,11 @@ class Encoders {
         icon: 'file-code-o',
         type: 'button',
         text: "PHP"
+      }, {
+        id: 'new_jsp',
+        icon: 'file-code-o',
+        type: 'button',
+        text: "JSP"
       }, {
         type: 'separator'
       }, {
@@ -129,6 +135,9 @@ class Encoders {
         case "new_aspx":
           that.createEncoder(id);
           break;
+        case "new_jsp":
+          that.createEncoder(id);
+          break;
         case "new_php":
         case "new_php_rsa":
           that.createEncoder(id);
@@ -177,6 +186,7 @@ class Encoders {
     combobox.put("asp", "ASP");
     combobox.put("aspx", "ASPX");
     combobox.put("php", "PHP");
+    combobox.put("jsp", "JSP");
     combobox.put("custom", "CUSTOM");
 
     grid.attachEvent("onEditCell", function (stage, rId, cInd, nValue, oValue) {
@@ -208,7 +218,7 @@ class Encoders {
             break
           case 2:
             // type
-            if (nValue != "asp" && nValue != "aspx" && nValue != "php" && nValue != "custom") {
+            if (nValue != "asp" && nValue != "aspx" && nValue != "php" && nValue != "jsp"&& nValue != "custom") {
               toastr.error(LANG['message']["etype_error"], LANG_T['error']);
               return
             }
@@ -747,12 +757,14 @@ module.exports = {
         asp: [],
         aspx: [],
         php: [],
+        jsp: [],
         custom: []
       };
       var encoders_path = {
         asp: [],
         aspx: [],
         php: [],
+        jsp: [],
         custom: []
       };
       let userencoder_path = path.join(remote.process.env.AS_WORKDIR, 'antData/encoders');
@@ -794,12 +806,14 @@ module.exports = {
         asp: [],
         aspx: [],
         php: [],
+        jsp: [],
         custom: []
       };
       var decoders_path = {
         asp: [],
         aspx: [],
         php: [],
+        jsp: [],
         custom: []
       };
       let userdecoder_path = path.join(remote.process.env.AS_WORKDIR, 'antData/encoders');
