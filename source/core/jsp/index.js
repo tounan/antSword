@@ -104,7 +104,6 @@ class JSP extends Base {
                   let tagStr = tag.substr(2, tag.length - 3);
                   let tagArr = tagStr.split('::');
                   let func, retStr;
-                  console.log(formatter);
                   if ((tagArr.length > 0) && (func = formatter[tagArr[0]])) {
                     // 如果包含有分割标签且该格式化函数存在，则调用该函数进行处理
                     retStr = func(argv[tagArr[1] || '']);

@@ -100,7 +100,7 @@ class FileManager {
       this.isWin = false;
     } else {
       // windows 盘符统一大写
-      info_path = `${info_path.substr(0,1).toUpperCase()}${info_path.substr(1)}`;
+      info_path = `${info_path.substr(0, 1).toUpperCase()}${info_path.substr(1)}`;
       info_drive = info_drive.toUpperCase();
     };
     this.path = info_path;
@@ -145,11 +145,11 @@ class FileManager {
     let self = this;
     if (self.isWin) { // 处理输入为 f:\ 这种情况
       p = p.replace(/\\/g, '/');
-      p = p.substr(1, 2) == ":/" ? `${p.substr(0,1).toUpperCase()}${p.substr(1)}` : p;
+      p = p.substr(1, 2) == ":/" ? `${p.substr(0, 1).toUpperCase()}${p.substr(1)}` : p;
     }
     let path = this.changePath(p);
     if (self.isWin) { // 处理输入为 f: 这种情况
-      path = path.substr(1, 2) == ":/" ? `${path.substr(0,1).toUpperCase()}${path.substr(1)}` : path;
+      path = path.substr(1, 2) == ":/" ? `${path.substr(0, 1).toUpperCase()}${path.substr(1)}` : path;
     }
     let cache;
 
@@ -208,6 +208,8 @@ class FileManager {
       this.cache.set(cache_tag, JSON.stringify(data));
     }).catch((err) => {
       toastr.error((err instanceof Object) ? JSON.stringify(err) : String(err), LANG_T['error']);
+      this.folder.cell.progressOff();
+      this.files.cell.progressOff();
     })
 
     // this.core.filemanager.dir({
@@ -650,15 +652,15 @@ class FileManager {
         fs.unlinkSync(filePath);
       }
       self.core.download(filePath, self.core.filemanager.download_file({
-          path: path
-        }), (_size) => {
-          // 计算进度百分比
-          down_size += _size;
-          let down_progress = parseInt(parseFloat(down_size / item.size).toFixed(2) * 100);
-          if (!(down_progress % 5)) {
-            task.update(down_progress + '%');
-          };
-        })
+        path: path
+      }), (_size) => {
+        // 计算进度百分比
+        down_size += _size;
+        let down_progress = parseInt(parseFloat(down_size / item.size).toFixed(2) * 100);
+        if (!(down_progress % 5)) {
+          task.update(down_progress + '%');
+        };
+      })
         .then((_size) => {
           if (_size === item.size) {
             task.success(LANG['download']['task']['success']);
@@ -944,69 +946,69 @@ class FileManager {
         icon: 'code',
         type: 'button'
       };
-      (_ === ext) ? _opt['selected'] = true: 0;
+      (_ === ext) ? _opt['selected'] = true : 0;
       _options.push(_opt);
     }
     toolbar.loadStruct([{
-        id: 'hinttext',
-        type: 'text',
-        text: hinttext
-      },
-      {
-        id: 'filepath',
-        type: 'buttonInput',
-        width: 500,
-        value: antSword.noxss(path),
-      },
-      {
-        type: 'separator'
-      },
-      {
-        type: 'spacer'
-      },
-      {
-        id: 'refresh',
-        type: 'button',
-        icon: 'refresh',
-        text: LANG['editor']['toolbar']['refresh']
-      },
-      {
-        id: 'save',
-        type: 'button',
-        icon: 'save',
-        text: LANG['editor']['toolbar']['save']
-      },
-      {
-        type: 'separator'
-      },
-      {
-        id: 'encode',
-        type: 'buttonSelect',
-        icon: 'language',
-        openAll: true,
-        text: LANG['editor']['toolbar']['encode'],
-        options: (() => {
-          let ret = [];
-          ENCODES.map((_) => {
-            let _opt_ = {
-              id: `encode_${_}`,
-              text: _,
-              icon: 'font',
-              type: 'button'
-            };
-            (_ === self.opts['encode'] ? _opt_['selected'] = true : 0);
-            ret.push(_opt_);
-          });
-          return ret;
-        })()
-      }, {
-        id: 'mode',
-        type: 'buttonSelect',
-        icon: 'th-list',
-        openAll: true,
-        text: LANG['editor']['toolbar']['mode'],
-        options: _options
-      },
+      id: 'hinttext',
+      type: 'text',
+      text: hinttext
+    },
+    {
+      id: 'filepath',
+      type: 'buttonInput',
+      width: 500,
+      value: antSword.noxss(path),
+    },
+    {
+      type: 'separator'
+    },
+    {
+      type: 'spacer'
+    },
+    {
+      id: 'refresh',
+      type: 'button',
+      icon: 'refresh',
+      text: LANG['editor']['toolbar']['refresh']
+    },
+    {
+      id: 'save',
+      type: 'button',
+      icon: 'save',
+      text: LANG['editor']['toolbar']['save']
+    },
+    {
+      type: 'separator'
+    },
+    {
+      id: 'encode',
+      type: 'buttonSelect',
+      icon: 'language',
+      openAll: true,
+      text: LANG['editor']['toolbar']['encode'],
+      options: (() => {
+        let ret = [];
+        ENCODES.map((_) => {
+          let _opt_ = {
+            id: `encode_${_}`,
+            text: _,
+            icon: 'font',
+            type: 'button'
+          };
+          (_ === self.opts['encode'] ? _opt_['selected'] = true : 0);
+          ret.push(_opt_);
+        });
+        return ret;
+      })()
+    }, {
+      id: 'mode',
+      type: 'buttonSelect',
+      icon: 'th-list',
+      openAll: true,
+      text: LANG['editor']['toolbar']['mode'],
+      options: _options
+    },
     ]);
     toolbar.setItemToolTip('hinttext', tooltip);
     toolbar.attachEvent('onClick', (id) => {

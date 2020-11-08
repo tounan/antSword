@@ -6,6 +6,7 @@ const LANG = antSword['language']['database'];
 const LANG_T = antSword['language']['toastr'];
 const dialog = antSword.remote.dialog;
 const fs = require('fs');
+const Decodes = antSword.Decodes;
 
 class JSP {
 
@@ -69,17 +70,17 @@ class JSP {
           case 'conn':
             this.getDatabases(arr[1]);
             break;
-            // 获取数据库表名
+          // 获取数据库表名
           case 'database':
             let _db = arr[1].split(':');
             this.getTables(_db[0], Buffer.from(_db[1], 'base64').toString());
             break;
-            // 获取表名字段
+          // 获取表名字段
           case 'table':
             let _tb = arr[1].split(':');
             this.getColumns(_tb[0], Buffer.from(_tb[1], 'base64').toString(), Buffer.from(_tb[2], 'base64').toString());
             break;
-            // 生成查询SQL语句
+          // 生成查询SQL语句
           case 'column':
             let _co = arr[1].split(':');
             const db = Buffer.from(_co[1], 'base64').toString();
@@ -728,12 +729,10 @@ class JSP {
       });
   }
 
-  // 更新SQL执行结果
-  updateResult(data) {
+  parseResult(data) {
     // 1.分割数组
     const arr = data.split('\n');
-    // let arr = []; _arr.map((_) => {   arr.push(antSword.noxss(_)); });
-    // console.log(_arr, arr); 2.判断数据
+    // 2.判断数据
     if (arr.length < 2) {
       return toastr.error(LANG['result']['error']['parse'], LANG_T['error']);
     };
@@ -750,6 +749,56 @@ class JSP {
     let data_arr = [];
     arr.map((_) => {
       let _data = _.split('\t|\t');
+      for (let i = 0; i < _data.length; i++) {
+        let buff = Buffer.from(_data[i], "base64");
+        let encoding = Decodes.detectEncoding(buff, { defaultEncoding: "unknown" });
+        if (encoding == "unknown") {
+          encoding = this.dbconf['encode'] || '';
+        }
+        encoding = encoding != "" ? encoding : this.opt.core.__opts__['encode'];
+        let text = Decodes.decode(buff, encoding);
+        _data[i] = antSword.noxss(text);
+      }
+      data_arr.push(_data);
+    });
+    data_arr.pop();
+    return {
+      headers: header_arr,
+      datas: data_arr
+    }
+  }
+
+  // 更新SQL执行结果
+  updateResult(data) {
+    // 1.分割数组
+    const arr = data.split('\n');
+    // 2.判断数据
+    if (arr.length < 2) {
+      return toastr.error(LANG['result']['error']['parse'], LANG_T['error']);
+    };
+    // 3.行头
+    let header_arr = (arr[0]).replace(/,/g, '&#44;').split('\t|\t');
+    if (header_arr.length === 1) {
+      return toastr.warning(LANG['result']['error']['noresult'], LANG_T['warning']);
+    };
+    if (header_arr[header_arr.length - 1] === '\r') {
+      header_arr.pop();
+    };
+    arr.shift();
+    // 4.数据
+    let data_arr = [];
+    arr.map((_) => {
+      let _data = _.split('\t|\t');
+      for (let i = 0; i < _data.length; i++) {
+        let buff = new Buffer.from(_data[i], "base64");
+        let encoding = Decodes.detectEncoding(buff, { defaultEncoding: "unknown" });
+        if (encoding == "unknown") {
+          encoding = this.dbconf['encode'] || '';
+        }
+        encoding = encoding != "" ? encoding : this.opt.core.__opts__['encode'];
+        let text = Decodes.decode(buff, encoding);
+        _data[i] = antSword.noxss(text, false);
+      }
       data_arr.push(_data);
     });
     data_arr.pop();
@@ -795,7 +844,7 @@ class JSP {
       .core
       .__opts__
       .ip}_${new Date()
-      .format("yyyyMMddhhmmss")}.csv`;
+        .format("yyyyMMddhhmmss")}.csv`;
     dialog.showSaveDialog({
       title: LANG['result']['dump']['title'],
       defaultPath: filename
