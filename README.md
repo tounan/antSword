@@ -61,8 +61,8 @@ See document: [Make contributions to AntSword][url-contribute]
 [url-release]: https://github.com/AntSwordProject/AntSword/releases
 [url-quickstart]: https://doc.u0u.us/en/getting_started/index.html
 [url-contribute]: https://doc.u0u.us/en/contribute_docs.html
-[url-mainui]: http://as.xuanbo.cc/doc/getting_started/get_antsword_2.jpg
-[url-filemanager]: http://as.xuanbo.cc/doc/file_manager/main_page_1.png
-[url-terminal]: http://as.xuanbo.cc/doc/terminal/main_page_1.png
-[url-database]: http://as.xuanbo.cc/doc/database/main_page_1.png
-[url-pluginstore]: http://as.xuanbo.cc/doc/plugin_store/main_page_2.jpg
+[url-mainui]: http://antsword.l1n3.net/doc/getting_started/get_antsword_2.jpg
+[url-filemanager]: http://antsword.l1n3.net/doc/file_manager/main_page_1.png
+[url-terminal]: http://antsword.l1n3.net/doc/terminal/main_page_1.png
+[url-database]: http://antsword.l1n3.net/doc/database/main_page_1.png
+[url-pluginstore]: http://antsword.l1n3.net/doc/plugin_store/main_page_2.jpg
