@@ -45,6 +45,14 @@ See document: [Make contributions to AntSword][url-contribute]
 
 > Thanks to anyone who made any contributions.
 
+## Other
+
+### 404StarLink 2.0 - Galaxy
+
+![](https://github.com/knownsec/404StarLink-Project/raw/master/logo.png)
+
+antSword has joined 404Team [404StarLink 2.0 - Galaxy](https://github.com/knownsec/404StarLink2.0-Galaxy)
+
 ## LICENSE
 
 [LICENSE](./LICENSE)

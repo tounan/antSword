@@ -44,6 +44,14 @@
 
 **一路走来，得到了很多朋友的参与开发以及点滴赞助，在此感谢陪伴，感谢你们能让它越走越远！**
 
+## 其它
+
+### 星链计划2.0
+
+![](https://github.com/knownsec/404StarLink-Project/raw/master/logo.png)
+
+antSword 已经加入 404Team [404StarLink 2.0 - Galaxy](https://github.com/knownsec/404StarLink2.0-Galaxy)
+
 ## 开源协议
 
 详情请查看 [LICENSE](./LICENSE)
