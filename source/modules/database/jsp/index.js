@@ -309,6 +309,7 @@ class JSP {
           this
             .core
             .request(this.core[`database_${_data['type']}`].show_databases({
+              encode: this.manager.opt.encode,
               conn: _data['conn']
             }))
             .then((res) => {
@@ -462,6 +463,7 @@ class JSP {
           this
             .core
             .request(this.core[`database_${_data['type']}`].show_databases({
+              encode: this.manager.opt.encode,
               conn: _data['conn']
             }))
             .then((res) => {
