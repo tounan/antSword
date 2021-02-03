@@ -125,10 +125,14 @@ const antSword = window.antSword = {
           return
         }
         // 存储路径&&package信息到全局变量antSword['plugins']
-        antSword['plugins'][_] = {
-          _id: _,
-          path: pluginPath,
-          info: JSON.parse(fs.readFileSync(path.join(pluginPath, 'package.json')))
+        try {
+          antSword['plugins'][_] = {
+            _id: _,
+            path: pluginPath,
+            info: JSON.parse(fs.readFileSync(path.join(pluginPath, 'package.json')))
+          }
+        } catch (error) {
+          return
         }
       });
     // 加载插件：：开发
@@ -142,10 +146,14 @@ const antSword = window.antSword = {
           if (!fs.lstatSync(_path).isDirectory()) {
             return
           }
-          antSword['plugins'][_] = {
-            _id: _,
-            path: _path,
-            info: JSON.parse(fs.readFileSync(path.join(_path, 'package.json')))
+          try {
+            antSword['plugins'][_] = {
+              _id: _,
+              path: _path,
+              info: JSON.parse(fs.readFileSync(path.join(_path, 'package.json')))
+            }
+          } catch (error) {
+            return
           }
         });
     }
