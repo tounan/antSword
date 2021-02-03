@@ -59,7 +59,7 @@ antSword has joined 404Team [404StarLink 2.0 - Galaxy](https://github.com/knowns
 
 [url-doczh]: README_CN.md
 [url-changelog]: CHANGELOG.md
-[url-document]: http://doc.u0u.us/en/
+[url-document]: https://www.yuque.com/antswordproject/antsword/
 [url-release]: https://github.com/AntSwordProject/AntSword/releases/
 [url-electron]: http://electron.atom.io/
 [url-es6]: http://es6.ruanyifeng.com/
@@ -67,10 +67,10 @@ antSword has joined 404Team [404StarLink 2.0 - Galaxy](https://github.com/knowns
 [url-nodejs]: https://nodejs.org/
 [url-homepage]: http://uyu.us
 [url-release]: https://github.com/AntSwordProject/AntSword/releases
-[url-quickstart]: https://doc.u0u.us/en/getting_started/index.html
+[url-quickstart]: https://www.yuque.com/antswordproject/antsword/lmwppk
 [url-contribute]: https://doc.u0u.us/en/contribute_docs.html
-[url-mainui]: http://antsword.l1n3.net/doc/getting_started/get_antsword_2.jpg
-[url-filemanager]: http://antsword.l1n3.net/doc/file_manager/main_page_1.png
-[url-terminal]: http://antsword.l1n3.net/doc/terminal/main_page_1.png
-[url-database]: http://antsword.l1n3.net/doc/database/main_page_1.png
-[url-pluginstore]: http://antsword.l1n3.net/doc/plugin_store/main_page_2.jpg
+[url-mainui]: https://cdn.nlark.com/yuque/0/2021/png/1592179/1611820109032-b563426e-015c-4afe-a905-70e878fdcdb6.png
+[url-filemanager]: https://cdn.nlark.com/yuque/0/2021/png/1592179/1611823243564-26e964c2-6d38-421a-8543-5f1f082a6bbd.png
+[url-terminal]: https://cdn.nlark.com/yuque/0/2021/png/1592179/1611823538382-50fba630-3bd9-4205-b5dd-9cc054da79a8.png
+[url-database]: https://cdn.nlark.com/yuque/0/2021/png/1592179/1611825612518-ca1c4fcc-98a6-4fa3-b55d-f25619c86380.png
+[url-pluginstore]: https://cdn.nlark.com/yuque/0/2021/png/1592179/1611907520850-040bffb1-5bc3-4c1c-a8d1-1e69712f7684.png
