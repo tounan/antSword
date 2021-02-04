@@ -252,7 +252,7 @@ class ContextMenu {
     items.map((_) => {
       ret.push({
         text: _ === 'default' ?
-          LANG['category']['default'] : _,
+          LANG['category']['default'] : antSword.noxss(_),
         icon: 'fa fa-folder-o',
         disabled: category === _,
         action: moveHandler.bind(null, _)
