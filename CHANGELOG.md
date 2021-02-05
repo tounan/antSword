@@ -6,11 +6,12 @@
 
 ### 数据管理
 
-* 修复 context menu category self-xss
+* 修复 context menu category self-xss (thx @lixuesv)
 
 ### 其它
 
 * 优化插件加载, 加载异常的插件不会再影响到其它插件加载了
+* 更新纯真IP库(2021/02/02)
 
 ## 2020/09/10 `v(2.1.9)`
 
