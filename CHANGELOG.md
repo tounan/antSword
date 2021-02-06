@@ -4,6 +4,9 @@
 
 ## `v(2.1.10)`
 
+### 核心
+
+* 升级 JSP Template 到 v1.4
 ### 数据管理
 
 * 修复 context menu category self-xss (thx @lixuesv)
@@ -12,6 +15,33 @@
 
 * 优化插件加载, 加载异常的插件不会再影响到其它插件加载了
 * 更新纯真IP库(2021/02/02)
+
+### 插件相关
+
+* [As-Exploits](https://github.com/AntSword-Store/GenShell) 升级到 v1.1
+
+  * 增加对aspx类型的支持
+  * 增加提权辅助模块（aspx/jsp/php）
+  * 增加屏幕截图模块（jsp）
+  * 增加shellcode加载器模块（aspx）
+  * 仅展示当前类型可用模块，不可用模块不再显示
+
+* [GenShell](https://github.com/AntSword-Store/GenShell) 升级到 v0.2
+
+ > 新增 asp、aspx、jsp 三种 Shell 类型生成
+
+* [AS_Redis](https://github.com/AntSword-Store/AS_Redis) 升级到 v0.4
+
+  > 支持 jsp 类型
+
+* [PortScan](https://github.com/AntSword-Store/PortScan) 升级到 v0.3
+
+ > 支持 jsp、php4 类型
+
+* [as_netstat](https://github.com/AntSword-Store/as_netstat) 升级到 v0.2
+
+  > 支持所有类型
+
 
 ## 2020/09/10 `v(2.1.9)`
 

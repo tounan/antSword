@@ -15,11 +15,16 @@ class JSP extends Base {
       'base',
       'command',
       'filemanager',
+      'other',
       'database/sqlserver',
       'database/mysql',
       'database/oracle'
     ].map((_) => {
-      this.parseJspTemplate(`./template/${_}`);
+      try {
+        this.parseJspTemplate(`./template/${_}`); 
+      } catch (error) {
+        console.error(error);
+      }
     });
     // 解析编码器
     this
