@@ -2,11 +2,19 @@
 > 有空会补补BUG、添添新功能。    
 > 同时也欢迎大家的参与！感谢各位朋友的支持！ .TAT.
 
-## `v(2.1.10)`
+## 2021/02/06 `v(2.1.10)`
 
 ### 核心
 
 * 升级 JSP Template 到 v1.4
+  * 兼容 JDK6
+  * 兼容 Weblogic 内存 Webshell
+  * 优化报错信息
+  * 解决windows下中文乱码的问题（win选择GBK编码，linux选择UTF-8编码）
+  * 实战中只能获取到response的情况几乎没有，所以为了减少payload体积不再支持response作为入口参数
+  * 增加用于测试 payload 的Web项目
+  * 修复 java -jar xxx.war 启动时当前目录获取失败的问题
+
 ### 数据管理
 
 * 修复 context menu category self-xss (thx @lixuesv)
@@ -15,6 +23,10 @@
 
 * 优化插件加载, 加载异常的插件不会再影响到其它插件加载了
 * 更新纯真IP库(2021/02/02)
+* 文档地址更换到语雀 https://www.yuque.com/antswordproject/antsword/
+* 加入 404Team [404StarLink 2.0 - Galaxy](https://github.com/knownsec/404StarLink2.0-Galaxy)
+
+ > 非常有幸能够加入星链计划, 大家有空可以了解一下星链计划，有许多很酷的安全项目, 你一定不想错过
 
 ### 插件相关
 
