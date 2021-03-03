@@ -18,7 +18,7 @@ const {
 
 let logger;
 // 请求UA
-const USER_AGENT = 'antSword/v2.1';
+const USER_AGENT = require('random-fake-useragent');
 
 // 请求超时
 const REQ_TIMEOUT = 10000;
@@ -79,7 +79,7 @@ class Request {
     superagentProxy(superagent);
     superagent
       .get(opts['url'])
-      .set('User-Agent', USER_AGENT)
+      .set('User-Agent', USER_AGENT.getRandom())
       .proxy(opts['aproxyuri'])
       .timeout(REQ_TIMEOUT)
       .end((err, ret) => {
@@ -112,7 +112,7 @@ class Request {
     }
     let _request = superagent.post(opts['url']);
     // 设置headers
-    _request.set('User-Agent', USER_AGENT);
+    _request.set('User-Agent', USER_AGENT.getRandom());
     // 自定义headers
     for (let _ in opts.headers) {
       _request.set(_, opts.headers[_]);
@@ -295,7 +295,7 @@ class Request {
 
     let _request = superagent.post(opts['url']);
     // 设置headers
-    _request.set('User-Agent', USER_AGENT);
+    _request.set('User-Agent', USER_AGENT.getRandom());
     // 自定义headers
     for (let _ in opts.headers) {
       _request.set(_, opts.headers[_]);

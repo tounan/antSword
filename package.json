@@ -12,6 +12,7 @@
     "marked": "^0.6.2",
     "nedb": "^1.5.1",
     "node-rsa": "^1.0.5",
+    "random-fake-useragent": "^0.1.0",
     "superagent": "^3.8.3",
     "superagent-proxy": "^1.0.3",
     "tar": "^4.4.6",
