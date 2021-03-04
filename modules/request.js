@@ -307,45 +307,52 @@ class Request {
       let _postarr = [];
       for (var key in _postData) {
         if (_postData.hasOwnProperty(key)) {
-          _postarr.push(`${key}=${_postData[key]}`);
+          let _tmp = encodeURIComponent(_postData[key]).replace(/asunescape\((.+?)\)/g, function ($, $1) {
+            return unescape($1);
+          }); // 后续可能需要二次处理的在这里追加
+          _postarr.push(`${key}=${_tmp}`);
         }
       }
       let antstream = new AntRead(_postarr.join("&"), {
         'step': parseInt(opts['chunkStepMin']),
         'stepmax': parseInt(opts['chunkStepMax'])
       });
-      let _datasuccess = false; // 表示是否是 404 类shell
       _request
         .proxy(APROXY_CONF['uri'])
         .type('form')
         .ignoreHTTPS(opts['ignoreHTTPS'])
-        .pipe(through((chunk) => {
-          // 判断数据流中是否包含后截断符？长度++
-          let temp = chunk.indexOf(opts['tag_e']);
-          if (temp !== -1) {
-            indexEnd = Buffer
-              .concat(tempData)
-              .length + temp;
-          };
-          tempData.push(chunk);
-          event
-            .sender
-            .send('download-progress-' + opts['hash'], chunk.length);
-        }, () => {
-          let tempDataBuffer = Buffer.concat(tempData);
-
-          indexStart = tempDataBuffer.indexOf(opts['tag_s']) || 0;
-          // 截取最后的数据
-          let finalData = Buffer.from(tempDataBuffer.slice(indexStart + opts['tag_s'].length, indexEnd), 'binary');
-          // 写入文件流&&关闭
-          rs.write(finalData);
-          rs.close();
-          event
-            .sender
-            .send('download-' + opts['hash'], finalData.length);
-          // 删除内存数据
-          finalData = tempDataBuffer = tempData = null;
-        }));
+        .parse((res, callback) => {
+          res.pipe(through((chunk) => {
+            // 判断数据流中是否包含后截断符？长度++
+            let temp = chunk.indexOf(opts['tag_e']);
+            if (temp !== -1) {
+              indexEnd = Buffer
+                .concat(tempData)
+                .length + temp;
+            };
+            tempData.push(chunk);
+            event
+              .sender
+              .send('download-progress-' + opts['hash'], chunk.length);
+          }, () => {
+            let tempDataBuffer = Buffer.concat(tempData);
+  
+            indexStart = tempDataBuffer.indexOf(opts['tag_s']) || 0;
+            // 截取最后的数据
+            let finalData = Buffer.from(tempDataBuffer.slice(indexStart + opts['tag_s'].length, indexEnd), 'binary');
+            // 写入文件流&&关闭
+            rs.write(finalData);
+            rs.close();
+            event
+              .sender
+              .send('download-' + opts['hash'], finalData.length);
+            // 删除内存数据
+            finalData = tempDataBuffer = tempData = null;
+          }))
+        })
+        .on('error', (err) => {
+          return event.sender.send('download-error-' + opts['hash'], err);
+        });
       antstream.pipe(_request);
     } else {
       // 通过替换函数方式来实现发包方式切换, 后续可改成别的
@@ -353,9 +360,16 @@ class Request {
       let _postarr = [];
       if (opts['useMultipart'] == 1) {
         _request.send = _request.field;
-        _postarr = _postData;
+        for (var key in _postData) {
+          if (_postData.hasOwnProperty(key)) {
+            let _tmp = (_postData[key]).replace(/asunescape\((.+?)\)/g, function ($, $1) {
+              return unescape($1)
+            });
+            _postarr[key] = _tmp;
+          }
+        }
       } else {
-        if(opts['addMassData']==1){
+        if(opts['addMassData'] == 1){
           for (let i = 0; i < randomInt(num_min, num_max); i++) {  //将混淆流量放入到payload数组中
             _postData[randomString(randomInt(varname_min, varname_max))] = randomString(randomInt(data_min, data_max));
           }
@@ -405,7 +419,10 @@ class Request {
             .send('download-' + opts['hash'], finalData.length);
           // 删除内存数据
           finalData = tempDataBuffer = tempData = null;
-        }));
+        }))
+        .on('error', (err) => {
+          return event.sender.send('download-error-' + opts['hash'], err);
+        });;
     }
   }
 
