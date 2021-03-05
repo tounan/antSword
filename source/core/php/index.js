@@ -75,12 +75,13 @@ class PHP extends Base {
     }
 
     let asencCode;
+    let ext = {
+      opts: this.__opts__,
+    };
     if (!force_default) {
-      asencCode = this.__decoder__[this.__opts__['decoder'] || 'default'].asoutput();
+      asencCode = this.__decoder__[this.__opts__['decoder'] || 'default'].asoutput(ext);
     } else {
-      asencCode = this
-        .__decoder__['default']
-        .asoutput();
+      asencCode = this.__decoder__['default'].asoutput(ext);
     }
     // 组合完整的代码
     let tmpCode = data['_'];

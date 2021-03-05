@@ -9,6 +9,11 @@
 * 修改发包默认 UserAgent 为 随机 User-Agent
 * 修复 Chunk 发包下 Download 异常问题 #272 (thx @c2xusnpq6)
 * 修复 Download 在 chunk 和 multipart 发包模式下 asunescape 不生效的问题
+
+### 核心
+
+* JSP 类型支持「解码器」
+
 ## 2021/02/06 `v(2.1.10)`
 
 ### 核心
