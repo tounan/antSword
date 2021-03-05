@@ -48,7 +48,7 @@ class JSP extends Base {
   }
 
   get decoders() {
-    return ['default'];
+    return ['default', 'reverse', 'rot13'];
   }
 
   /**
@@ -71,6 +71,22 @@ class JSP extends Base {
     }
     data['_'] = this.replaceClassStringVar(data['_'], '->|', tag_s);
     data['_'] = this.replaceClassStringVar(data['_'], '|<-', tag_e);
+    data['_'] = this.replaceClassStringVar(data['_'], 'antswordCharset', this.__opts__["encode"]);
+    data['_'] = this.replaceClassStringVar(data['_'], 'antswordrandomPrefix', this.__opts__.otherConf["random-Prefix"]);
+
+    let asencCode;
+    let ext = {
+      opts: this.__opts__,
+    };
+    if (!force_default) {
+      asencCode = this.__decoder__[this.__opts__['decoder'] || 'default'].asoutput(ext);
+    } else {
+      asencCode = this.__decoder__['default'].asoutput(ext);
+    }
+    let _argv = this.argv();
+    let formatter = this.format(this.__opts__);
+    data[_argv[0]] = formatter['newbase64'](asencCode);
+    data['_'] = this.replaceClassStringVar(data['_'], 'antswordargdecoder', _argv[0]);
     // 使用编码器进行处理并返回
     return this.encodeComplete(tag_s, tag_e, data);
   }
@@ -123,8 +139,6 @@ class JSP extends Base {
                 });
             }
             // 发送HTTP请求
-            data['_'] = this.replaceClassStringVar(data['_'], 'antswordCharset', this.__opts__["encode"]);
-            data['_'] = this.replaceClassStringVar(data['_'], 'antswordrandomPrefix', this.__opts__.otherConf["random-Prefix"]);
             return data;
           }
         } else {
