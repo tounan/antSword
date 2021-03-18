@@ -20,6 +20,15 @@
   opts: opts: 类型为 Object, Shell 配置
 }
 ```
+* 修复使用 default 编码器服务端其它函数输出 payload 时数据分割解析的问题
+
+eg: 
+
+```php
+<?php phpinfo();eval($_POST['ant']);phpinfo();?>
+```
+
+因为 `phpinfo();` 会显示发送的 payload, 发送的 payload 中含有数据分割符，导致分割出错
 
 ## 2021/02/06 `v(2.1.10)`
 
