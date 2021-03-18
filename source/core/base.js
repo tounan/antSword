@@ -36,22 +36,25 @@ class Base {
         return data;
       },
       /**
-       * 随机编码器
-       * @param  {String} pwd  连接密码
-       * @param  {Object} data 请求数据
-       * @return {Object}      生成数据
+       * v2.1.11 Remove random encoder
        */
-      random(pwd, data) {
-        let _encoders = [];
-        for (let _ in this) {
-          if (_ === 'random') {
-            continue
-          }
-          _encoders.push(_);
-        }
-        let _index = parseInt(Math.random() * _encoders.length);
-        return this[_encoders[_index]](pwd, data);
-      }
+      // /**
+      //  * 随机编码器
+      //  * @param  {String} pwd  连接密码
+      //  * @param  {Object} data 请求数据
+      //  * @return {Object}      生成数据
+      //  */
+      // random(pwd, data) {
+      //   let _encoders = [];
+      //   for (let _ in this) {
+      //     if (_ === 'random') {
+      //       continue
+      //     }
+      //     _encoders.push(_);
+      //   }
+      //   let _index = parseInt(Math.random() * _encoders.length);
+      //   return this[_encoders[_index]](pwd, data);
+      // }
     }
     this['__decoder__'] = {}
     // 解析自定义编码器

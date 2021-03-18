@@ -377,15 +377,18 @@ class Form {
             label: `default\t(${LANG['list']['not_recommended']})`,
             checked: true
           }];
-          if (c !== 'custom') {
-            _.push({
-              type: 'radio',
-              name: `encoder_${c}`,
-              value: 'random',
-              label: `random\t(${LANG['list']['not_recommended']})`,
-              checked: _encoder === 'random'
-            });
-          }
+          /**
+           * v2.1.11 Remove random encoder
+           */
+          // if (c !== 'custom') {
+          //   _.push({
+          //     type: 'radio',
+          //     name: `encoder_${c}`,
+          //     value: 'random',
+          //     label: `random\t(${LANG['list']['not_recommended']})`,
+          //     checked: _encoder === 'random'
+          //   });
+          // }
           encoders.map((e) => {
             _.push({
               type: 'radio',
