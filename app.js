@@ -71,9 +71,7 @@ app.once('ready', () => {
   // 窗口事件监听
   mainWindow.on('close', (event) => {
       event.preventDefault();
-      app.exit(0);
-    }).on('minimize', (event) => {
-      event.preventDefault();
+      // app.exit(0);
       if (process.platform == 'darwin') {
         app.hide();
       } else if (process.platform == 'linux') {
@@ -81,6 +79,8 @@ app.once('ready', () => {
       } else {
         mainWindow.hide();
       }
+    }).on('minimize', (event) => {
+      event.preventDefault();
     })
     .on('resize', reloadUI)
     .on('maximize', reloadUI)
