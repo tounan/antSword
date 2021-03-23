@@ -48,7 +48,7 @@ class JSP extends Base {
   }
 
   get decoders() {
-    return ['default', 'reverse', 'rot13'];
+    return ['default', 'reverse', 'rot13', 'base64'];
   }
 
   /**
