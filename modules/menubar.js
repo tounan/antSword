@@ -113,7 +113,7 @@ class Menubar {
         accelerator: 'Command+Q',
         click: this
           .app
-          .quit
+          .exit
           .bind(this.app)
       }]
     }, {
