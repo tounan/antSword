@@ -92,6 +92,11 @@ class Encoders {
         type: 'button',
         text: "PHP"
       }, {
+        id: 'new_jsp_decoder',
+        icon: 'file-code-o',
+        type: 'button',
+        text: "JSP"
+      }, {
         type: 'separator'
       }, {
         id: 'new_custom_decoder',
@@ -146,6 +151,9 @@ class Encoders {
           that.createEncoder(id);
           break;
         case "new_php_decoder":
+          that.createEncoder(id, 'decoder');
+          break;
+        case "new_jsp_decoder":
           that.createEncoder(id, 'decoder');
           break;
         case "new_custom_decoder":
