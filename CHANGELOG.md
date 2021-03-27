@@ -2,7 +2,7 @@
 > 有空会补补BUG、添添新功能。    
 > 同时也欢迎大家的参与！感谢各位朋友的支持！ .TAT.
 
-## `v(2.1.11)`
+## 2021/03/26 `v(2.1.11)`
 
 ### 后端模块
 
@@ -34,9 +34,11 @@ eg:
 
 > 能够适配所有编码器的Shell比较少, 这个功能就略显鸡肋, 我们决定移除它
 
-* JSP Template 升级至 1.5.5-3c1cd75
+* JSP Template 升级至 [v1.5](https://github.com/AntSwordProject/AntSword-JSP-Template/releases/tag/1.5)
   * 支持解码器(返回包加密)
   * 兼容 JDK5
+  * 修复base64编码问题&改正错别字
+  * 修改获取当前目录的方式
 
 ### 其它
 
