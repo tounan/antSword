@@ -1,6 +1,6 @@
 /**
  * 数据库管理模板::oracle oci8 驱动
- * i 数据分隔符号 => \t|\t
+ * i 数据分隔符号 => \\t|\\t
  *
  * session_mode: OCI_DEFAULT 0 OCI_SYSOPER 4 OCI_SYSDBA 2
  *
@@ -25,12 +25,12 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
             echo(trim(@oci_result($q,1)).chr(9));
           }
         }else{
-          echo("Status\t|\t\r\n");
+          echo("Status\\t|\\t\\r\\n");
           $e=@oci_error($q);
           if($e){
-            echo(base64_encode("ERROR://{$e['message']} in [{$e['sqltext']}] col:{$e['offset']}")."\t|\t\r\n");
+            echo(base64_encode("ERROR://{$e['message']} in [{$e['sqltext']}] col:{$e['offset']}")."\\t|\\t\\r\\n");
           }else{
-            echo("RmFsc2U="."\t|\t\r\n");
+            echo("RmFsc2U="."\\t|\\t\\r\\n");
           }
         }
         @oci_close($H);
@@ -65,12 +65,12 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
             }
           }
         }else{
-          echo("Status\t|\t\r\n");
+          echo("Status\\t|\\t\\r\\n");
           $e=@oci_error($q);
           if($e){
-            echo(base64_encode("ERROR://{$e['message']} in [{$e['sqltext']}] col:{$e['offset']}")."\t|\t\r\n");
+            echo(base64_encode("ERROR://{$e['message']} in [{$e['sqltext']}] col:{$e['offset']}")."\\t|\\t\\r\\n");
           }else{
-            echo("RmFsc2U="."\t|\t\r\n");
+            echo("RmFsc2U="."\\t|\\t\\r\\n");
           }
         }
         @oci_close($H);
@@ -107,12 +107,12 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
             }
           }
         }else{
-          echo("Status\t|\t\r\n");
+          echo("Status\\t|\\t\\r\\n");
           $e=@oci_error($q);
           if($e){
-            echo(base64_encode("ERROR://{$e['message']} in [{$e['sqltext']}] col:{$e['offset']}")."\t|\t\r\n");
+            echo(base64_encode("ERROR://{$e['message']} in [{$e['sqltext']}] col:{$e['offset']}")."\\t|\\t\\r\\n");
           }else{
-            echo("RmFsc2U="."\t|\t\r\n");
+            echo("RmFsc2U="."\\t|\\t\\r\\n");
           }
         }
         @oci_close($H);
@@ -142,27 +142,27 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
         if(@oci_execute($q)) {
           $n=oci_num_fields($q);
           if($n==0){
-            echo("Affect Rows\t|\t\r\n".base64_encode(@oci_num_rows($q))."\t|\t\r\n");
+            echo("Affect Rows\\t|\\t\\r\\n".base64_encode(@oci_num_rows($q))."\\t|\\t\\r\\n");
           }else{
             for($i=1;$i<=$n;$i++){
-              echo(oci_field_name($q,$i)."\t|\t");
+              echo(oci_field_name($q,$i)."\\t|\\t");
             }
-            echo "\r\n";
+            echo "\\r\\n";
             while ($row = @oci_fetch_array($q, OCI_ASSOC+OCI_RETURN_NULLS)) {
               foreach ($row as $item) {
-                echo($item !== null ? base64_encode($item):"")."\t|\t";
+                echo($item !== null ? base64_encode($item):"")."\\t|\\t";
               }
-              echo "\r\n";
+              echo "\\r\\n";
             }
             @oci_free_statement($q);
           }
         }else{
-          echo("Status\t|\t\r\n");
+          echo("Status\\t|\\t\\r\\n");
           $e=@oci_error($q);
           if($e){
-            echo(base64_encode("ERROR://{$e['message']} in [{$e['sqltext']}] col:{$e['offset']}")."\t|\t\r\n");
+            echo(base64_encode("ERROR://{$e['message']} in [{$e['sqltext']}] col:{$e['offset']}")."\\t|\\t\\r\\n");
           }else{
-            echo("RmFsc2U="."\t|\t\r\n");
+            echo("RmFsc2U="."\\t|\\t\\r\\n");
           }
         }
         @oci_close($H);

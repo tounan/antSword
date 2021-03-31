@@ -75,20 +75,20 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
       @mssql_select_db($dbn,$T);
       $q=@mssql_query($sql,$T);
       if(is_bool($q)){
-        echo("Status\t|\tAffect Rows\t|\t\r\n".($q?"VHJ1ZQ==":"RmFsc2U=")."\t|\t".base64_encode(@mssql_rows_affected($T)." row(s)")."\t|\t\r\n");
+        echo("Status\\t|\\tAffect Rows\\t|\\t\\r\\n".($q?"VHJ1ZQ==":"RmFsc2U=")."\\t|\\t".base64_encode(@mssql_rows_affected($T)." row(s)")."\\t|\\t\\r\\n");
       }else{
         $i=0;
         while($rs=@mssql_fetch_field($q)){
-          echo($rs->name."\t|\t");
+          echo($rs->name."\\t|\\t");
           $i++;
         }
-        echo("\r\n");
+        echo("\\r\\n");
         while($rs=@mssql_fetch_row($q)){
           for($c=0;$c<$i;$c++){
             echo(base64_encode(trim($rs[$c])));
-            echo("\t|\t");
+            echo("\\t|\\t");
           }
-          echo("\r\n");
+          echo("\\r\\n");
         }
         @mssql_free_result($q);
       }
