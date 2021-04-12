@@ -532,6 +532,9 @@ class CUSTOM {
       }))
       .then((res) => {
         let ret = res['text'];
+        if (ret.indexOf("ERROR://") > -1) {
+          throw ret;
+        }
         const arr = ret.split('\t');
         if (arr.length === 1 && ret === '') {
           toastr.warning(LANG['result']['warning'], LANG_T['warning'])
@@ -589,6 +592,9 @@ class CUSTOM {
       }))
       .then((res) => {
         let ret = res['text'];
+        if (ret.indexOf("ERROR://") > -1) {
+          throw ret;
+        }
         const arr = ret.split('\t');
         const _db = Buffer.from(db).toString('base64');
         // 删除子节点
@@ -644,6 +650,9 @@ class CUSTOM {
       }))
       .then((res) => {
         let ret = res['text'];
+        if (ret.indexOf("ERROR://") > -1) {
+          throw ret;
+        }
         const arr = ret.split('\t');
         const _db = Buffer
           .from(db)
@@ -710,6 +719,9 @@ class CUSTOM {
       }))
       .then((res) => {
         let ret = res['text'];
+        if (ret.indexOf("ERROR://") > -1) {
+          throw ret;
+        }
         // 更新执行结果
         this.updateResult(ret);
         this

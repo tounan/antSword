@@ -592,6 +592,9 @@ class JSP {
       }))
       .then((res) => {
         let ret = res['text'];
+        if (ret.indexOf("ERROR://") > -1) {
+          throw ret;
+        }
         const arr = ret.split('\t');
         const _db = Buffer.from(db).toString('base64');
         // 删除子节点
@@ -647,6 +650,9 @@ class JSP {
       }))
       .then((res) => {
         let ret = res['text'];
+        if (ret.indexOf("ERROR://") > -1) {
+          throw ret;
+        }
         const arr = ret.split('\t');
         const _db = Buffer
           .from(db)
@@ -713,6 +719,9 @@ class JSP {
       }))
       .then((res) => {
         let ret = res['text'];
+        if (ret.indexOf("ERROR://") > -1) {
+          throw ret;
+        }
         // 更新执行结果
         this.updateResult(ret);
         this

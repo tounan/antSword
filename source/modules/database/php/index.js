@@ -1553,6 +1553,9 @@ class PHP {
       })
     ).then((res) => {
       let ret = res['text'];
+      if (ret.indexOf("ERROR://") > -1) {
+        throw ret;
+      }
       // 更新执行结果
       this.updateResult(ret);
       this.manager.query.layout.progressOff();
