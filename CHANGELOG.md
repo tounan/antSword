@@ -7,10 +7,10 @@
 ### 核心
 
 * 修复 JSP Shell 无法执行 update/delete/insert 语句问题
-
 ## 数据管理
 
 * 优化出错提示
+* PHP 类型新增 SQLite_PDO 支持
 
 ## 2021/03/27 `v(2.1.11.1)`
 

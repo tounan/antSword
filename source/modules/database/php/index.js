@@ -270,6 +270,7 @@ class PHP {
       'oracle_oci8': ['UTF8','ZHS16GBK','ZHT16BIG5','ZHS16GBKFIXED','ZHT16BIG5FIXED'],
       'postgresql': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
       'postgresql_pdo': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
+      'sqlite_pdo': ['utf8'],
       'informix': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
     }
   }
@@ -349,6 +350,7 @@ class PHP {
           { text: 'ORACLE_OCI8', value: 'oracle_oci8' },
           { text: 'PostgreSQL', value: 'postgresql' },
           { text: 'PostgreSQL_PDO', value: 'postgresql_pdo' },
+          { text: 'SQLite_PDO', value: 'sqlite_pdo' },
           { text: 'INFORMIX', value: 'informix' }
         ] },
         { type: 'combo', label: LANG['form']['encode'], name: 'encode', options: ((c) => {
@@ -422,6 +424,13 @@ class PHP {
           form.setFormData({
             host: 'localhost:5432:postgres',
             user: 'postgres',
+            passwd: '',
+          });
+          break;
+        case 'sqlite_pdo':
+          form.setFormData({
+            host: '/var/www/html/test.db',
+            user: '',
             passwd: '',
           });
           break;
