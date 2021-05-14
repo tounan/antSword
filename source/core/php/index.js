@@ -25,6 +25,7 @@ class PHP extends Base {
       'database/oracle_oci8',
       'database/postgresql',
       'database/postgresql_pdo',
+      'database/sqlite3',
       'database/sqlite_pdo',
       'database/informix'
     ].map((_) => {
