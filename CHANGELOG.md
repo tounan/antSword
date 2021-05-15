@@ -2,21 +2,29 @@
 > 有空会补补BUG、添添新功能。    
 > 同时也欢迎大家的参与！感谢各位朋友的支持！ .TAT.
 
-## `v(2.1.12)`
+## 2021/05/15 `v(2.1.12)`
 
 ### 核心
 
-* 修复 JSP Shell 无法执行 update/delete/insert 语句问题
 * JSP Template 升级至 [v1.6](https://github.com/AntSwordProject/AntSword-JSP-Template/releases/tag/1.6)
   * equals支持数组传参方式，兼容各种容器
   * build.py中可以手动指定版本号编译，不再需要下载指定jdk
   * 部分变量转为类属性，方便调试
   * 修正 insert/update/delete 语句无法执行问题
-## 数据管理
+
+> 所需要的 WebShell 可使用 GenShell 插件来生成
+
+### 数据管理
 
 * 优化出错提示
 * PHP 类型新增 SQLite_PDO 支持
 * PHP 类型新增 SQLite3 支持
+
+### 插件相关
+
+* [GenShell](https://github.com/AntSword-Store/GenShell) 升级到 v0.4
+
+* 兼容 JSP Template v1.6
 
 ## 2021/03/27 `v(2.1.11.1)`
 
