@@ -2,6 +2,26 @@
 > 有空会补补BUG、添添新功能。    
 > 同时也欢迎大家的参与！感谢各位朋友的支持！ .TAT.
 
+## `2.1.13`
+
+### 后端模块
+
+* 修复 multipart 发包方式下, 编码器中 data 内容不为字符串时异常
+
+eg:
+
+```
+'use strict';
+
+module.exports = (pwd, data) => {
+  data['test'] = 123; // 这里会引发异常
+  data[pwd] = data['_'];
+  delete data['_'];
+  return data;
+}
+```
+
+
 ## 2021/05/15 `v(2.1.12)`
 
 ### 核心
