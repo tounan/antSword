@@ -8,7 +8,6 @@
   position: absolute;
   display: block;
   background-color: white;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -433,7 +432,6 @@
 }
 .dhtmlxcalendar_dhx_skyblue div.dhtmlxcalendar_selector_obj table.dhtmlxcalendar_selector_table td.dhtmlxcalendar_selector_cell_middle ul li {
   float: left;
-  font-family: Tahoma;
   font-size: 11px;
   color: #000000;
   list-style-type: none;
@@ -595,7 +593,6 @@ div.dhxcombo_dhx_skyblue input.dhxcombo_input {
   padding: 0px;
   margin: 0px 0px 0px 2px;
   background-color: white;
-  font-family: Tahoma;
   font-size: 13px;
   color: #000000;
   vertical-align: middle;
@@ -651,7 +648,6 @@ div.dhxcombo_dhx_skyblue div.dhxcombo_top_image {
 /* options list */
 div.dhxcombolist_dhx_skyblue {
   position: absolute;
-  font-family: Tahoma;
   font-size: 13px;
   color: #000000;
   border: 1px solid #c3c3c3;
@@ -831,7 +827,6 @@ div.dhxcombolist_dhx_skyblue.dhxcombolist_hdr div.dhxcombo_hdrtext {
   padding: 0px;
   white-space: nowrap;
   cursor: default;
-  font-family: Tahoma;
   font-size: 12px;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -1024,7 +1019,6 @@ div.dhxcombolist_dhx_skyblue.dhxcombolist_hdr div.dhxcombo_hdrtext div.dhxcombo_
   background-color: white;
   margin: 5px 0px 0px 0px;
   padding: 1px 3px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   text-align: left;
@@ -1038,7 +1032,6 @@ div.dhxcombolist_dhx_skyblue.dhxcombolist_hdr div.dhxcombo_hdrtext div.dhxcombo_
 }
 .dhtmlxcp_dhx_skyblue .dhxcp_label_hsl,
 .dhtmlxcp_dhx_skyblue .dhxcp_label_rgb {
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   text-align: right;
@@ -1058,7 +1051,6 @@ div.dhxcombolist_dhx_skyblue.dhxcombolist_hdr div.dhxcombo_hdrtext div.dhxcombo_
   border: 1px solid #c3c3c3;
   border-radius: 0px;
   background-color: white;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   text-align: right;
@@ -1081,7 +1073,6 @@ div.dhxcombolist_dhx_skyblue.dhxcombolist_hdr div.dhxcombo_hdrtext div.dhxcombo_
   outline: none;
   border-radius: 2px;
   border: 1px solid #c3c3c3;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   padding: 0px;
@@ -1315,7 +1306,6 @@ div.dhx_popup_dhx_skyblue div.dhx_popup_area {
   /* components-related */
 }
 div.dhx_popup_dhx_skyblue div.dhx_popup_area td.dhx_popup_td {
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   text-align: left;
@@ -1524,7 +1514,6 @@ div.dhx_popup_skin_detect {
   top: 8px;
   left: none;
   right: 8px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   cursor: default;
@@ -1534,7 +1523,6 @@ div.dhx_popup_skin_detect {
   top: 8px;
   right: none;
   left: 8px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   cursor: default;
@@ -1550,7 +1538,6 @@ div.dhtmlxMenu_dhx_skyblue_TopLevel_Item_Disabled,
 div.dhtmlxMenu_dhx_skyblue_TopLevel_Item_Selected {
   position: relative;
   float: left;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   cursor: default;
@@ -1607,7 +1594,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_Polygon {
   user-select: none;
 }
 div.dhtmlxMenu_dhx_skyblue_SubLevelArea_Polygon table.dhtmlxMebu_SubLevelArea_Tbl td {
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   line-height: normal;
@@ -1656,7 +1642,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_Polygon table.dhtmlxMebu_SubLevelArea_Tb
   padding-right: 8px;
 }
 div.dhtmlxMenu_dhx_skyblue_SubLevelArea_Polygon table.dhtmlxMebu_SubLevelArea_Tbl td.sub_item_hk div.sub_item_hk {
-  font-family: Tahoma;
   font-size: 11px;
   color: #4d4d4d;
   text-align: right;
@@ -1833,13 +1818,11 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
 .dhtmlxribbon_dhx_skyblue .dhxrb_block_base .dhxrb_block_label {
   text-align: center;
   clear: left;
-  font-family: Tahoma;
   font-size: 12px;
   color: #898989;
   background-color: #e5e5e5;
   *padding: 1px 3px 4px;
   *font-size: 11px;
-  *font-family: Tahoma, FreeSans;
 }
 .dhtmlxribbon_dhx_skyblue .dhxrb_big_button {
   margin: 0pc 2px 5px;
@@ -1849,7 +1832,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
   height: 72px;
   border-radius: 2px;
   border: 1px solid #eaeaea;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   background-color: #eaeaea;
@@ -1862,7 +1844,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
 .dhtmlxribbon_dhx_skyblue .dhxrb_big_button .dhxrb_label_button {
   margin: 0px auto;
   cursor: default;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   line-height: 10px;
@@ -1886,7 +1867,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
   padding: 3px 4px 0px 4px;
   border-radius: 2px;
   border: 1px solid #eaeaea;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   background-color: #eaeaea;
@@ -1900,7 +1880,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
   overflow: hidden;
   border-radius: 2px;
   border: 1px solid #eaeaea;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   background-color: #eaeaea;
@@ -1951,7 +1930,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
   border: 1px solid #c3c3c3;
   height: 14px;
   width: 80px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   padding: 1px 2px;
@@ -1974,7 +1952,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
   float: left;
   cursor: default;
   margin: 2px 4px 2px 6px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -1984,7 +1961,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
   height: 18px;
   line-height: 18px;
   cursor: default;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -1992,7 +1968,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
   float: left;
   margin: 2px 4px;
   cursor: default;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -2118,7 +2093,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
   overflow: hidden;
 }
 .dhtmlxribbon_dhx_skyblue .dhxrb_item_text {
-  font-family: Tahoma;
   font-size: 13px;
   color: #2d6278;
 }
@@ -2130,12 +2104,10 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
 }
 .dhtmlxribbon_dhx_skyblue .dhxrb_3rows_button .dhxrb_item_text,
 .dhtmlxribbon_dhx_skyblue .dhxrb_in_row .dhxrb_item_text {
-  font-family: Tahoma;
   font-size: 14px;
   color: #2d6278;
 }
 .dhtmlxribbon_dhx_skyblue .dhxrb_big_button .dhxrb_item_text {
-  font-family: Tahoma;
   font-size: 30px;
   color: #2d6278;
   line-height: 72px;
@@ -2167,7 +2139,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
   cursor: default;
   overflow: hidden;
   /* font */
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -2257,7 +2228,6 @@ div.dhtmlxMenu_dhx_skyblue_SubLevelArea_ArrowDown_Disabled {
   background-color: white;
   margin: 1px;
   padding: 2px 4px 3px 4px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   line-height: normal;
@@ -2510,7 +2480,6 @@ div.dhx_toolbar_poly_dhx_skyblue {
   user-select: none;
 }
 div.dhx_toolbar_poly_dhx_skyblue td {
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   line-height: normal;
@@ -2567,7 +2536,6 @@ div.dhx_toolbar_slider_label_dhx_skyblue {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   line-height: normal;
@@ -2716,7 +2684,6 @@ div.dhxform_item_template div.dhx_cell_editor div.dhx_cell_toolbar_def div.dhx_t
 .dhx_tooltip {
   display: none;
   position: absolute;
-  font-family: Tahoma;
   color: #626262;
   font-size: 12px;
   z-index: 10000;
@@ -2737,7 +2704,6 @@ div.dhxform_item_template div.dhx_cell_editor div.dhx_cell_toolbar_def div.dhx_t
 }
 .dhx_chart {
   position: relative;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   overflow: hidden;
@@ -2780,7 +2746,6 @@ div.dhxform_item_template div.dhx_cell_editor div.dhx_cell_toolbar_def div.dhx_t
 }
 .dhx_axis_title_y {
   text-align: center;
-  font-family: Tahoma;
   /*safari*/
   -webkit-transform: rotate(-90deg);
   /*firefox*/
@@ -2837,7 +2802,6 @@ div.dhxform_item_template div.dhx_cell_editor div.dhx_cell_toolbar_def div.dhx_t
 .dhx_tooltip {
   display: none;
   position: absolute;
-  font-family: Tahoma;
   color: #626262;
   font-size: 12px;
   z-index: 10000;
@@ -2907,7 +2871,6 @@ div.dhxform_item_template div.dhx_cell_editor div.dhx_cell_toolbar_def div.dhx_t
 }
 /*defautl styles which will be used by any kind of dataview's item*/
 .dhx_dataview_item {
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -2936,7 +2899,6 @@ div.dhxform_item_template div.dhx_cell_editor div.dhx_cell_toolbar_def div.dhx_t
   float: left;
   text-align: center;
   height: 16px;
-  font-family: Tahoma;
   font-size: 10pt;
   border: 1px solid gray;
   padding: 2px 4px;
@@ -2976,14 +2938,12 @@ div.dhxform_item_template div.dhx_cell_editor div.dhx_cell_toolbar_def div.dhx_t
   font-size: 12px;
 }
 .standartTreeRow {
-  font-family: Tahoma;
   font-size: 13px;
   -moz-user-select: none;
 }
 .selectedTreeRow {
   background-color: navy;
   color: white;
-  font-family: Tahoma;
   font-size: 13px;
   -moz-user-select: none;
 }
@@ -2994,7 +2954,6 @@ div.dhxform_item_template div.dhx_cell_editor div.dhx_cell_toolbar_def div.dhx_t
 .standartTreeRow_lor {
   text-decoration: underline;
   background-color: #ffffff;
-  font-family: Tahoma;
   font-size: 13px;
   -moz-user-select: none;
 }
@@ -3002,7 +2961,6 @@ div.dhxform_item_template div.dhx_cell_editor div.dhx_cell_toolbar_def div.dhx_t
   text-decoration: underline;
   background-color: navy;
   color: white;
-  font-family: Tahoma;
   font-size: 13px;
   -moz-user-select: none;
 }
@@ -3036,7 +2994,6 @@ div.dhxform_item_template div.dhx_cell_editor div.dhx_cell_toolbar_def div.dhx_t
 }
 .dragSpanDiv,
 .dragSpanDiv td {
-  font-family: Tahoma;
   font-size: 12px;
   background-color: #ffffff;
   z-index: 999;
@@ -3125,7 +3082,6 @@ div.dhxform_item_template div.dhx_cell_editor div.dhx_cell_toolbar_def div.dhx_t
 .dhxtree_dhx_skyblue .standartTreeRow_lor {
   border-right: 1px solid transparent;
   border-left: 1px solid transparent;
-  font-family: Tahoma;
   font-size: 13px;
   overflow: hidden;
   padding: 0px 0px 0px 0px;
@@ -3140,7 +3096,6 @@ div.dhxform_item_template div.dhx_cell_editor div.dhx_cell_toolbar_def div.dhx_t
   /*border: 1px solid #b6d5ff;*/
   color: #000000;
   line-height: 17px;
-  font-family: Tahoma;
   font-size: 13px;
   overflow: hidden;
 }
@@ -3244,7 +3199,6 @@ div.gridbox table.obj td.editable {
 }
 div.gridbox table.obj td.group_row {
   vertical-align: middle;
-  font-family: Tahoma;
   font-size: 10pt;
   font-weight: bold;
   height: 30px;
@@ -3252,7 +3206,6 @@ div.gridbox table.obj td.group_row {
   border-bottom: 2px solid navy;
 }
 .dragSpanDiv {
-  font-family: Tahoma;
   font-size: 12px;
   border: 1px gray solid;
   background-color: #ffffff;
@@ -3392,7 +3345,6 @@ div.gridbox td.filter input,
 div.gridbox td.filter select {
   width: 90%;
   font-size: 8pt;
-  font-family: Tahoma;
   -webkit-user-select: text;
   -khtml-user-select: text;
   -moz-user-select: text;
@@ -3437,7 +3389,6 @@ div.gridbox_dhx_skyblue.gridbox table.hdr td {
   border-width: 1px 1px 1px 1px;
   border-color: #efefef #c3c3c3 #c3c3c3 #efefef;
   background-color: transparent;
-  font-family: Tahoma;
   font-size: 13px;
   color: #000000;
   vertical-align: top;
@@ -3448,7 +3399,6 @@ div.gridbox_dhx_skyblue.gridbox {
   border: 1px solid #c3c3c3;
 }
 div.gridbox_dhx_skyblue.gridbox table.obj {
-  font-family: Tahoma;
   font-size: 13px;
   color: #000000;
 }
@@ -3517,7 +3467,6 @@ dhx_dragColDiv,
 div.gridbox div.ftr td,
 div.pagingBlock,
 span.recordsInfoBlock {
-  font-family: Tahoma;
   font-size: 13px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -3751,7 +3700,6 @@ div.dhx_page_active_skyblue div.dhx_page_active_skyblue {
   background-color: white;
   font-size: 10px;
   font-weight: bold;
-  font-family: Tahoma;
 }
 .calkSubmit {
   padding: 2px;
@@ -3807,7 +3755,6 @@ div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td .treegrid_cell img {
   display: inline;
 }
 .dhxform_obj_dhx_skyblue {
-  font-family: Tahoma;
   float: left;
   line-height: normal;
 }
@@ -3960,7 +3907,6 @@ div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td .treegrid_cell img {
 }
 .dhxform_obj_dhx_skyblue .dhxform_textarea {
   border: 1px solid #c3c3c3;
-  font-family: Tahoma;
   font-size: 1em;
   color: #000000;
   resize: none;
@@ -4007,7 +3953,6 @@ div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td .treegrid_cell img {
   background-color: #ffffff;
   margin: 0px;
   padding: 3px 2px 3px 0px;
-  font-family: Tahoma;
   font-size: 1em;
   color: #000000;
 }
@@ -4043,7 +3988,6 @@ div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td .treegrid_cell img {
   border: 1px solid #cacecd;
 }
 .dhxform_obj_dhx_skyblue fieldset.dhxform_fs legend.fs_legend {
-  font-family: Tahoma;
   font-size: inherit;
   color: #9d9d9d;
   font-weight: normal;
@@ -4162,7 +4106,6 @@ div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td .treegrid_cell img {
   position: absolute;
 }
 .dhxform_obj_dhx_skyblue div.dhxform_txt_label2 {
-  font-family: Tahoma;
   font-size: inherit;
   color: #9d9d9d;
   font-weight: bold;
@@ -4174,7 +4117,6 @@ div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td .treegrid_cell img {
   color: #b2b8bc;
 }
 .dhxform_obj_dhx_skyblue div.dhxform_btn {
-  font-family: Tahoma;
   font-size: inherit;
   color: #000000;
   -webkit-user-select: none;
@@ -4256,7 +4198,6 @@ div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td .treegrid_cell img {
   filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
 }
 .dhxform_obj_dhx_skyblue div.dhxform_control div.dhxform_note {
-  font-family: Tahoma;
   font-size: 0.8em;
   color: #808080;
   padding-bottom: 3px;
@@ -4266,7 +4207,6 @@ div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td .treegrid_cell img {
   color: #b2b2b2;
 }
 .dhxform_obj_dhx_skyblue div.dhxform_label span.dhxform_info {
-  font-family: Tahoma;
   font-size: 0.6em;
   color: #808080;
   margin-left: 3px;
@@ -4477,7 +4417,6 @@ div.gridbox_dhx_skyblue.gridbox table.obj.row20px tr td .treegrid_cell img {
 .dhxform_obj_dhx_skyblue .dhx_file_uploader.dhx_file_uploader_title div.dhx_upload_controls div.dhx_file_uploader_button.button_info {
   display: inline;
   background-image: none;
-  font-family: Tahoma;
   font-size: 13px;
   color: #a1a1a1;
   height: auto;
@@ -4575,7 +4514,6 @@ div.dhx_form_skin_detect {
   left: 0px;
   width: 100%;
   height: 37px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   overflow: hidden;
@@ -4684,7 +4622,6 @@ div.dhx_form_skin_detect {
   overflow: auto;
   background-color: white;
   border: 1px solid #c3c3c3;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   z-index: 0;
@@ -4718,7 +4655,6 @@ div.dhx_form_skin_detect {
 .dhx_vault_dhx_skyblue div.dhx_vault_files div.dhx_vault_file_param {
   position: relative;
   margin: 3px 37px 0 50px;
-  font-family: Tahoma;
   font-size: 12px;
   color: inherit;
   overflow: hidden;
@@ -4735,7 +4671,6 @@ div.dhx_form_skin_detect {
   text-overflow: ellipsis;
 }
 .dhx_vault_dhx_skyblue div.dhx_vault_files div.dhx_vault_file_param.dhx_vault_file_name div.dhx_vault_file_name_text a {
-  font-family: Tahoma;
   font-size: 12px;
   color: inherit;
 }
@@ -4824,7 +4759,6 @@ div.dhx_form_skin_detect {
   border: 1px solid #c3c3c3;
   margin-top: 3px;
   margin-bottom: 3px;
-  font-family: Tahoma;
   font-size: 7px;
   color: #000000;
   border-radius: 2px;
@@ -4978,7 +4912,6 @@ div.dhxvault_skin_detect {
   position: relative;
   height: 27px;
   line-height: 26px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #333333;
   font-weight: bold;
@@ -5082,7 +5015,6 @@ div.dhxvault_skin_detect {
   bottom: 0px;
   width: 100%;
   background-color: #eaeaea;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -5177,7 +5109,6 @@ div.dhxvault_skin_detect {
   border: 1px solid #c3c3c3;
   background-color: #eaeaea;
   padding: 7px 6px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -5251,7 +5182,6 @@ div.dhxvault_skin_detect {
   position: relative;
   height: 27px;
   line-height: 26px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #333333;
   font-weight: bold;
@@ -5481,7 +5411,6 @@ div.dhxvault_skin_detect {
   bottom: 0px;
   width: 100%;
   background-color: #eaeaea;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -5580,7 +5509,6 @@ div.dhxvault_skin_detect {
   border: 1px solid #c3c3c3;
   background-color: #eaeaea;
   padding: 7px 6px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -5813,7 +5741,6 @@ div.dhxlayout_sep_sw_dhx_skyblue {
   position: relative;
   height: 24px;
   background-color: white;
-  font-family: Tahoma;
   font-size: 12px;
   color: #333333;
   border-left: 1px solid #c3c3c3;
@@ -5988,7 +5915,6 @@ div.dhxlayout_sep_sw_dhx_skyblue {
   position: absolute;
   bottom: 0px;
   width: 100%;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   background-color: #eaeaea;
@@ -6089,7 +6015,6 @@ div.dhxlayout_sep_sw_dhx_skyblue {
   border: 1px solid #c3c3c3;
   background-color: #eaeaea;
   padding: 7px 6px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -6099,7 +6024,6 @@ span.dhxtabbar_tabs_text_test_dhx_skyblue {
   right: 0px;
   top: 0px;
   font-weight: bold;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -6162,7 +6086,6 @@ span.dhxtabbar_tabs_text_test_dhx_skyblue {
   overflow: hidden;
   opacity: 1;
   filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   -khtml-user-select: none;
@@ -6211,7 +6134,6 @@ span.dhxtabbar_tabs_text_test_dhx_skyblue {
   border-radius: 10px;
   background-color: #9A9A9A;
   border: 1px solid #f5f5f5;
-  font-family: Tahoma;
   font-size: 10px;
   text-align: center;
   font-weight: normal;
@@ -6398,7 +6320,6 @@ span.dhxtabbar_tabs_text_test_dhx_skyblue {
   bottom: 0px;
   width: 100%;
   background-color: #eaeaea;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -6575,7 +6496,6 @@ span.dhxtabbar_tabs_text_test_dhx_skyblue {
   border: 1px solid #c3c3c3;
   background-color: #eaeaea;
   padding: 7px 6px;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
 }
@@ -6703,7 +6623,6 @@ span.dhxtabbar_tabs_text_test_dhx_skyblue {
   filter: progid:DXImageTransform.Microsoft.Gradient(gradientType=0, startColorStr=#edeeed, endColorStr=#dbe4ee) progid:DXImageTransform.Microsoft.Alpha(opacity=100);
 
 */
-  font-family: Tahoma;
   font-size: 12px;
   color: #333333;
   cursor: inherit;
@@ -7003,7 +6922,6 @@ span.dhxtabbar_tabs_text_test_dhx_skyblue {
   position: absolute;
   bottom: 0px;
   width: 100%;
-  font-family: Tahoma;
   font-size: 12px;
   color: #000000;
   background-color: #dbe4ee;
@@ -7081,7 +6999,6 @@ div.dhxwins_vp_dhx_skyblue.dhxwins_vp_fs {
   padding: 10px 10px 10px 20px;
   background-color: #FFFFCC;
   font-size: 12px;
-  font-family: Tahoma;
   z-index: 10000;
   margin: 0px 5px 5px 5px;
   border: 1px solid #d3d3d3;
@@ -7130,7 +7047,6 @@ div.dhxwins_vp_dhx_skyblue.dhxwins_vp_fs {
   -webkit-border-top-left-radius: 6px;
   border-radius-top-right: 6px;
   line-height: 16px;
-  font-family: Tahoma;
   font-weight: bold;
 }
 .dhtmlx-info,
@@ -7146,20 +7062,17 @@ div.dhxwins_vp_dhx_skyblue.dhxwins_vp_fs {
 }
 .dhtmlx_popup_text {
   font-size: 13px;
-  font-family: Tahoma;
   color: #444;
   min-height: 30px;
   padding: 20px 10px 10px 10px !important;
   overflow: hidden;
 }
 .dhtmlx_popup_controls {
-  font-family: Tahoma;
   font-weight: bold;
   padding: 10px 10px 17px 10px !important;
 }
 .dhtmlx_popup_button {
   font-size: 12px;
-  font-family: Tahoma;
   font-weight: bold;
   min-width: 50px !important;
   width: 69px;
