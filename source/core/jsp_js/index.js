@@ -103,8 +103,9 @@ class JSP_JS extends Base {
       request.setCharacterEncoding(cs);
       response.setCharacterEncoding(cs);
       function decode(str) {
-        str=str.substr(#randomPrefix#);
-      return byte2Str(Base64DecodeToByte(str));
+        str = str.substr(2);
+        var bt=Base64DecodeToByte(str);
+        return new java.lang.String(bt,cs);
       }
       function Base64DecodeToByte(str) {
         importPackage(Packages.sun.misc);
@@ -116,11 +117,6 @@ class JSP_JS extends Base {
           bt = Base64.getDecoder().decode(str);
         }
         return bt;
-      }
-      function byte2Str(bt) {
-        var strType = Java.type("java.lang.String");
-        var result = new strType(bt, cs);
-        return result;
       }
       ${asencCode}
       ${tmpCode}

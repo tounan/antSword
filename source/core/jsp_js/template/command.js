@@ -20,12 +20,13 @@ module.exports = (arg1, arg2, arg3) => ({
       }
       var e = [];
       var i = 0;
-      for (var key in cmdenv) {
-        print(key + "=" + cmdenv[key]);
-        e[i] = key + "=" + cmdenv[key];
+      var iter = cmdenv.keySet().iterator();
+      while (iter.hasNext()) {
+        var key = iter.next();
+        var val = cmdenv.get(key);
+        e[i] = key + "=" + val;
         i++;
       }
-    
       p = java.lang.Runtime.getRuntime().exec(s, e);
       CopyInputStream(p.getInputStream(), sb);
       CopyInputStream(p.getErrorStream(), sb);

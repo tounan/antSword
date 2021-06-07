@@ -136,11 +136,9 @@ module.exports = (arg1, arg2, arg3) => ({
       } else {
         var is = new FileInputStream(sf);
         var os = new FileOutputStream(df);
-        var n;
-        var byteArray = Java.type("byte[]");
-        var b = new byteArray(1024);
-        while ((n = is.read(b, 0, 1024)) != -1) {
-          os.write(b, 0, n);
+        var tempByte;
+        while ((tempByte = is.read()) != -1) {
+          os.write(tempByte);
         }
         is.close();
         os.close();
@@ -159,15 +157,13 @@ module.exports = (arg1, arg2, arg3) => ({
   download_file: {
     _: `
     function DownloadFileCode(filePath, r) {
-      var n;
-      var byteArray = Java.type("byte[]");
-      var b = new byteArray(512);
       r.reset();
       var os = r.getOutputStream();
       var is = new BufferedInputStream(new FileInputStream(filePath));
       os.write(tag_s.getBytes());
-      while ((n = is.read(b, 0, 512)) != -1) {
-        os.write(b, 0, n);
+      var tempByte;
+      while ((tempByte = is.read()) != -1) {
+        os.write(tempByte);
       }
       os.write(tag_e.getBytes());
       os.close();
@@ -303,10 +299,9 @@ module.exports = (arg1, arg2, arg3) => ({
       var os = new FileOutputStream(saveFilePath);
       var h = u.openConnection();
       var is = h.getInputStream();
-      var byteArray = Java.type("byte[]");
-      var b = new byteArray(1024);
-      while ((n = is.read(b)) != -1) {
-        os.write(b, 0, n);
+      var tempByte;
+      while ((tempByte = is.read()) != -1) {
+        os.write(tempByte);
       }
       os.close();
       is.close();
