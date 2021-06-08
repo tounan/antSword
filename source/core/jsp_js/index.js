@@ -103,7 +103,7 @@ class JSP_JS extends Base {
       request.setCharacterEncoding(cs);
       response.setCharacterEncoding(cs);
       function decode(str) {
-        str = str.substr(2);
+        str = str.substr(#randomPrefix#);
         var bt=Base64DecodeToByte(str);
         return new java.lang.String(bt,cs);
       }
