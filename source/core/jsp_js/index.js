@@ -45,7 +45,7 @@ class JSP_JS extends Base {
   }
 
   get decoders() {
-    return ["default"];
+    return ["default", "base64"];
   }
   /**
    * HTTP请求数据组合函数
@@ -124,7 +124,7 @@ class JSP_JS extends Base {
       output.append("ERROR:// " + e.toString());
     }
     try {
-      response.getWriter().print(tag_s + asoutput(output.toString()) + tag_e);
+      response.getWriter().print(tag_s + asenc(output.toString()) + tag_e);
     } catch (e) {}
     `.replace(/\n\s+/g, '').replace(/#randomPrefix#/g, this.__opts__.otherConf["random-Prefix"]);
     // 使用编码器进行处理并返回

@@ -9,7 +9,7 @@ module.exports = {
    * @returns {string} asenc 加密返回数据的函数
    */
   asoutput: () => {
-    return `function asoutput(str){
+    return `function asenc(str){
         return str;
       }
     `.replace(/\n\s+/g, '');
