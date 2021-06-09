@@ -11,9 +11,9 @@ module.exports = (arg1, arg2, arg3) => ({
       var s = [cmdPath, split, command];
       var readonlyenv = System.getenv();
       var cmdenv = new HashMap(readonlyenv);
-      var envs = envstr.split("\\\\|\\\\|\\\\|asline\\\\|\\\\|\\\\|");
+      var envs = envstr.split("\\|\\|\\|asline\\|\\|\\|");
       for (var i = 0; i < envs.length; i++) {
-        var es = envs[i].split("\\\\|\\\\|\\\\|askey\\\\|\\\\|\\\\|");
+        var es = envs[i].split("\\|\\|\\|askey\\|\\|\\|");
         if (es.length == 2) {
           cmdenv.put(es[0], es[1]);
         }

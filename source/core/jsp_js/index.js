@@ -96,8 +96,8 @@ class JSP_JS extends Base {
     importPackage(Packages.java.io);
     var output = new StringBuffer("");
     var cs = "${jspencode}";
-    var tag_s = "${tag_s}";
-    var tag_e = "${tag_e}";
+    var tag_s = "${tag_s.substr(0,tag_s.length/2)}"+"${tag_s.substr(tag_s.length/2)}";
+    var tag_e = "${tag_e.substr(0,tag_e.length/2)}"+"${tag_e.substr(tag_e.length/2)}";
     try {
       response.setContentType("text/html");
       request.setCharacterEncoding(cs);
