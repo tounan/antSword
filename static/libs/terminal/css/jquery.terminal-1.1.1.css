@@ -405,7 +405,7 @@
 }
 @supports (--css: variables) {
     .terminal, .cmd {
-        color: var(--color, #aaa);
+        color: var(--color, #eee);
         background-color: var(--background, #000);
     }
     .terminal, .cmd, .terminal .terminal-output div div, .cmd .prompt {
@@ -413,7 +413,7 @@
         line-height: calc(var(--size, 1) * 14px);
     }
     .terminal .inverted, .cmd .inverted {
-        background-color: var(--color, #aaa);
+        background-color: var(--color, #eee);
         color: var(--background, #000);
     }
     .cmd .cursor.blink {
@@ -421,7 +421,7 @@
            -moz-animation: var(--animation, terminal-blink) 1s infinite steps(1, start);
             -ms-animation: var(--animation, terminal-blink) 1s infinite steps(1, start);
                 animation: var(--animation, terminal-blink) 1s infinite steps(1, start);
-        color: var(--color, #aaa);
+        color: var(--color, #eee);
         background-color: var(--background, #000);
         margin-bottom: -3px;
     }
