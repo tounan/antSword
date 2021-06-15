@@ -1,5 +1,5 @@
 /**
- * JSP_JS服务端脚本模板
+ * JSPJS服务端脚本模板
  * 开写：2021/04/06
  * 更新：-
  * 作者：yzddMr6 <https://github.com/yzddmr6>
@@ -8,7 +8,7 @@
 
 const Base = require('../base');
 
-class JSP_JS extends Base {
+class JSPJS extends Base {
   constructor(opts) {
     super(opts);
     // 解析模板
@@ -20,18 +20,18 @@ class JSP_JS extends Base {
       'database/mysql',
       'database/oracle'
     ].map((_) => {
-      this.parseTemplate(`./jsp_js/template/${_}`);
+      this.parseTemplate(`./jspjs/template/${_}`);
     });
     // 解析编码器
     this
       .encoders
       .map((_) => {
-        this.parseEncoder(`./jsp_js/encoder/${_}`);
+        this.parseEncoder(`./jspjs/encoder/${_}`);
       });
     this
       .decoders
       .map((_) => {
-        this.parseDecoder(`./jsp_js/decoder/${_}`);
+        this.parseDecoder(`./jspjs/decoder/${_}`);
       });
   }
 
@@ -45,7 +45,7 @@ class JSP_JS extends Base {
   }
 
   get decoders() {
-    return ["default", "base64"];
+    return ["default", "base64", "hex", "b64reverse", "b64rot13"];
   }
   /**
    * HTTP请求数据组合函数
@@ -132,4 +132,4 @@ class JSP_JS extends Base {
   }
 }
 
-module.exports = JSP_JS;
+module.exports = JSPJS;

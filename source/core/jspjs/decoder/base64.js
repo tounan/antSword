@@ -1,5 +1,5 @@
 /**
- * jsp_js::base64解码器
+ * jspjs::base64解码器
  */
 
  'use strict';

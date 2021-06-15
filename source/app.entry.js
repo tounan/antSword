@@ -174,7 +174,7 @@ antSword['encoders'] = (function () {
     asp: [],
     aspx: [],
     jsp: [],
-    jsp_js: [],
+    jspjs: [],
     php: [],
     custom: []
   };
@@ -182,7 +182,7 @@ antSword['encoders'] = (function () {
     asp: [],
     aspx: [],
     jsp: [],
-    jsp_js: [],
+    jspjs: [],
     php: [],
     custom: []
   };
@@ -191,7 +191,7 @@ antSword['encoders'] = (function () {
   !fs.existsSync(userencoder_path) ?
     fs.mkdirSync(userencoder_path) :
     null;
-  ['asp', 'aspx', 'php', 'jsp', 'jsp_js','custom'].map((t) => {
+  ['asp', 'aspx', 'php', 'jsp', 'jspjs','custom'].map((t) => {
     !fs.existsSync(path.join(userencoder_path, `${t}`)) ?
       fs.mkdirSync(path.join(userencoder_path, `${t}`)) :
       null;
@@ -232,7 +232,7 @@ antSword['decoders'] = (function () {
     aspx: [],
     php: [],
     jsp: [],
-    jsp_js: [],
+    jspjs: [],
     custom: []
   };
   var decoders_path = {
@@ -240,7 +240,7 @@ antSword['decoders'] = (function () {
     aspx: [],
     php: [],
     jsp: [],
-    jsp_js: [],
+    jspjs: [],
     custom: []
   };
   let userdecoder_path = path.join(remote.process.env.AS_WORKDIR, 'antData/encoders');
@@ -248,7 +248,7 @@ antSword['decoders'] = (function () {
   !fs.existsSync(userdecoder_path) ?
     fs.mkdirSync(userdecoder_path) :
     null;
-    ['asp', 'aspx', 'php', 'jsp','jsp_js', 'custom'].map((t) => {
+    ['asp', 'aspx', 'php', 'jsp','jspjs', 'custom'].map((t) => {
     !fs.existsSync(path.join(userdecoder_path, `${t}`)) ?
       fs.mkdirSync(path.join(userdecoder_path, `${t}`)) :
       null;

@@ -281,7 +281,7 @@ class Form {
         } else if (file_match.jsp.test(id) == true) {
           typecombo.selectOption(typecombo.getOption('jsp').index);
         } else if (file_match.jsp.test(id) == true) {
-          typecombo.selectOption(typecombo.getOption('jsp_js').index);
+          typecombo.selectOption(typecombo.getOption('jspjs').index);
         } else if (file_match.custom.test(id) == true) {
           typecombo.selectOption(typecombo.getOption('custom').index);
         }

@@ -1,5 +1,5 @@
 //
-// 数据库驱动::JSP_JS 支持数据库: Any
+// 数据库驱动::JSPJS 支持数据库: Any
 // time: 2021/6/5
 // by: yzddMr6
 //
@@ -10,7 +10,7 @@ const dialog = antSword.remote.dialog;
 const fs = require('fs');
 const Decodes = antSword.Decodes;
 
-class JSP_JS {
+class JSPJS {
 
   constructor(opt) {
     this.opt = opt;
@@ -930,4 +930,4 @@ class JSP_JS {
 
 }
 
-module.exports = JSP_JS;
+module.exports = JSPJS;
