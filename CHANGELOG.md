@@ -116,7 +116,11 @@ module.exports = (pwd, data) => {
 
 * ExecuteScript 支持 JSPJS 类型
 * GenShell 支持 JSPJS 类型 Shell 生成
-
+* Bypass disable_function
+  * 修正 bypass open_basedir 场景下上传路径问题
+  * `.antproxy.php` 上传至与 Webshell 同路径下
+  * php -S 利用方式会在界面显示开启的临时端口
+* PortScan 支持 JSPJS 类型
 
 ## 2021/05/15 `v(2.1.12)`
 
