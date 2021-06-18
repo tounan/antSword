@@ -95,6 +95,10 @@ public byte[] base64Decode(String str) throws Exception {
 
 > 别问, 要问就去问 Windows Defender
 
+### 数据管理
+
+* 开启代理情况下在数据管理状态栏会有提示
+
 ### 后端模块
 
 * 修复 multipart 发包方式下, 编码器中 data 内容不为字符串时异常

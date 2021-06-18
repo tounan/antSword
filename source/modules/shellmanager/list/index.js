@@ -30,9 +30,13 @@ class List {
    * @return {[type]}     [description]
    */
   updateHeader(num = 0) {
+    let proxyhint = "";
+    if(antSword.aproxymode === "manualproxy") {
+      proxyhint = `  <i class="fa fa-paper-plane"></i> <span style="color:green;">Proxy On</span>`;
+    }
     this
       .cell
-      .setText(`<i class="fa fa-list-ul"></i> ${LANG['title']} (${num})`);
+      .setText(`<i class="fa fa-list-ul"></i> ${LANG['title']} (${num})${proxyhint}`);
   }
 }
 
