@@ -2,8 +2,7 @@
 > 有空会补补BUG、添添新功能。    
 > 同时也欢迎大家的参与！感谢各位朋友的支持！ .TAT.
 
-## `2.1.13`
-
+## 2021/06/19 `2.1.13`
 
 ### 核心
 
@@ -125,6 +124,7 @@ module.exports = (pwd, data) => {
   * `.antproxy.php` 上传至与 Webshell 同路径下
   * php -S 利用方式会在界面显示开启的临时端口
 * PortScan 支持 JSPJS 类型
+* Out-of-Network 支持 JSPJS 类型
 
 ## 2021/05/15 `v(2.1.12)`
 
