@@ -88,7 +88,7 @@ class Conf {
   }
 
   get urlblacklist() {
-    return /(gov.cdddn|edddu.cn)/
+    return /(gov.cn|edu.cn)/
   }
 
 }
