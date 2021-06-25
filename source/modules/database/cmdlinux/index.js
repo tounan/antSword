@@ -8,6 +8,7 @@ const LANG_T = antSword['language']['toastr'];
 const dialog = antSword.remote.dialog;
 const fs = require('fs');
 const Decodes = antSword.Decodes;
+const xml2js = require('xml2js');
 
 class CMDLINUX {
 
@@ -1568,6 +1569,7 @@ class CMDLINUX {
       if (ret.indexOf("ERROR://") > -1) {
         throw ret;
       }
+      console.log(ret);
       // 更新执行结果
       this.updateResult(ret);
       this.manager.query.layout.progressOff();
@@ -1637,62 +1639,53 @@ class CMDLINUX {
     }
   }
 
+  parseResultXML(data) {
+    let parser = new xml2js.Parser(/* options */);
+    let header_arr = [];
+    let data_arr = [];
+    data = antSword.unxss(data);
+    parser.parseString(data, (err, result) => {
+      if(err) {
+        return toastr.error(LANG['result']['error']['parse'], LANG_T['error']);
+      }
+      var resultset = result.resultset;
+      console.log(resultset)
+      if(!resultset.hasOwnProperty('row')) {
+        header_arr = ['Status'];
+        data_arr = ['Empty Result']
+        return
+      }
+      var rows = resultset.row;
+      rows[0].field.forEach(h => {
+        header_arr.push(antSword.noxss(h['$'].name));
+      });
+      rows.forEach(row => {
+        let _data = [];
+        row.field.forEach(col => {
+          _data.push(antSword.noxss(col['_']));
+        });
+        data_arr.push(_data);
+      });
+    });
+    return {
+      headers: header_arr,
+      datas: data_arr
+    }
+  }
+
   // 更新SQL执行结果
   updateResult(data) {
-    // 1.分割数组
-    const arr = data.split('\n');
-    // 2.判断数据
-    if (arr.length < 2) {
-      return toastr.error(LANG['result']['error']['parse'], LANG_T['error']);
+    let res;
+    switch(this.dbconf['type']) {
+      case 'mysql':
+        res = this.parseResultXML(data);
+        break;
+      default:
+        res = this.parseResult(data);
+        break;
     };
-    // 3.行头
-    let header_arr = (arr[0]).replace(/,/g, '&#44;').split('\t|\t');
-    if (header_arr.length === 1) {
-      return toastr.warning(LANG['result']['error']['noresult'], LANG_T['warning']);
-    };
-    if (header_arr[header_arr.length - 1] === '\r') {
-      header_arr.pop();
-    };
-    arr.shift();
-    // 4.数据
-    let data_arr = [];
-    arr.map((_) => {
-      let _data = _.split('\t|\t');
-      for (let i = 0; i < _data.length; i ++) {
-        // _data[i] = antSword.noxss(new Buffer(_data[i], "base64").toString(), false);
-        let buff = new Buffer.from(_data[i], "base64");
-        let encoding = Decodes.detectEncoding(buff, {defaultEncoding: "unknown"});
-        if(encoding == "unknown") {
-          switch(this.dbconf['type']){
-            case 'sqlsrv':
-              var sqlsrv_conncs_mapping = {
-                'utf-8': 'utf8',
-                'char': '',
-              }
-              encoding = sqlsrv_conncs_mapping[this.dbconf['encode']] || '';
-              break;
-            case 'oracle_oci8':
-              var oci8_characterset_mapping = {
-                'UTF8': 'utf8',
-                'ZHS16GBK':'gbk',
-                'ZHT16BIG5': 'big5',
-                'ZHS16GBKFIXED': 'gbk',
-                'ZHT16BIG5FIXED': 'big5', 
-              }
-              encoding = oci8_characterset_mapping[this.dbconf['encode']] || '';
-              break;
-            default:
-              encoding = this.dbconf['encode'] || '';
-              break;
-          }
-        }
-        encoding = encoding != "" ? encoding : this.opt.core.__opts__['encode'];
-        let text = Decodes.decode(buff, encoding);
-      	_data[i] = antSword.noxss(text, false);
-      }
-      data_arr.push(_data);
-    });
-    data_arr.pop();
+    let data_arr = res.datas;
+    let header_arr = res.headers;
     // 5.初始化表格
     const grid = this.manager.result.layout.attachGrid();
     grid.clearAll();
