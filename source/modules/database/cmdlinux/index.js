@@ -264,16 +264,16 @@ class CMDLINUX {
     };
     this.encode_mapping = {
       'mysql': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
-      'mysqli': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
-      'mssql': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
-      'sqlsrv': ['utf-8', 'char'],
-      'oracle': ['UTF8','ZHS16GBK','ZHT16BIG5','ZHS16GBKFIXED','ZHT16BIG5FIXED'],
-      'oracle_oci8': ['UTF8','ZHS16GBK','ZHT16BIG5','ZHS16GBKFIXED','ZHT16BIG5FIXED'],
-      'postgresql': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
-      'postgresql_pdo': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
+      // 'mysqli': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
+      // 'mssql': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
+      // 'sqlsrv': ['utf-8', 'char'],
+      // 'oracle': ['UTF8','ZHS16GBK','ZHT16BIG5','ZHS16GBKFIXED','ZHT16BIG5FIXED'],
+      // 'oracle_oci8': ['UTF8','ZHS16GBK','ZHT16BIG5','ZHS16GBKFIXED','ZHT16BIG5FIXED'],
+      // 'postgresql': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
+      // 'postgresql_pdo': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
       'sqlite3': ['utf8'],
-      'sqlite_pdo': ['utf8'],
-      'informix': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
+      // 'sqlite_pdo': ['utf8'],
+      // 'informix': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
     }
   }
 
@@ -345,16 +345,16 @@ class CMDLINUX {
       { type: 'block', inputWidth: 'auto', offsetTop: 12, list: [
         { type: 'combo', label: LANG['form']['type'], readonly: true, name: 'type', options: [
           { text: 'MYSQL', value: 'mysql' },
-          { text: 'MYSQLI', value: 'mysqli' },
-          { text: 'MSSQL', value: 'mssql' },
-          { text: 'SQLSRV', value: 'sqlsrv' },
-          { text: 'ORACLE', value: 'oracle' },
-          { text: 'ORACLE_OCI8', value: 'oracle_oci8' },
-          { text: 'PostgreSQL', value: 'postgresql' },
-          { text: 'PostgreSQL_PDO', value: 'postgresql_pdo' },
+          // { text: 'MYSQLI', value: 'mysqli' },
+          // { text: 'MSSQL', value: 'mssql' },
+          // { text: 'SQLSRV', value: 'sqlsrv' },
+          // { text: 'ORACLE', value: 'oracle' },
+          // { text: 'ORACLE_OCI8', value: 'oracle_oci8' },
+          // { text: 'PostgreSQL', value: 'postgresql' },
+          // { text: 'PostgreSQL_PDO', value: 'postgresql_pdo' },
           { text: 'SQLite3', value: 'sqlite3' },
-          { text: 'SQLite_PDO', value: 'sqlite_pdo' },
-          { text: 'INFORMIX', value: 'informix' }
+          // { text: 'SQLite_PDO', value: 'sqlite_pdo' },
+          // { text: 'INFORMIX', value: 'informix' }
         ] },
         { type: 'combo', label: LANG['form']['encode'], name: 'encode', options: ((c) => {
           let ret = [];
@@ -551,14 +551,15 @@ class CMDLINUX {
       { type: 'block', inputWidth: 'auto', offsetTop: 12, list: [
         { type: 'combo', label: LANG['form']['type'], readonly: true, name: 'type', options: [
           { text: 'MYSQL', value: 'mysql', selected: conf['type'] === 'mysql' },
-          { text: 'MYSQLI', value: 'mysqli', selected: conf['type'] === 'mysqli' },
-          { text: 'MSSQL', value: 'mssql', selected: conf['type'] === 'mssql' },
-          { text: 'SQLSRV', value: 'sqlsrv', selected: conf['type'] === 'sqlsrv' },
-          { text: 'ORACLE', value: 'oracle', selected: conf['type'] === 'oracle' },
-          { text: 'ORACLE_OCI8', value: 'oracle_oci8', selected: conf['type'] === 'oracle_oci8' },
-          { text: 'PostgreSQL', value: 'postgresql', selected: conf['type'] === 'postgresql' },
-          { text: 'PostgreSQL_PDO', value: 'postgresql_pdo', selected: conf['type'] === 'postgresql_pdo' },
-          { text: 'INFORMIX', value: 'informix', selected: conf['type'] === 'informix' }
+          // { text: 'MYSQLI', value: 'mysqli', selected: conf['type'] === 'mysqli' },
+          // { text: 'MSSQL', value: 'mssql', selected: conf['type'] === 'mssql' },
+          // { text: 'SQLSRV', value: 'sqlsrv', selected: conf['type'] === 'sqlsrv' },
+          // { text: 'ORACLE', value: 'oracle', selected: conf['type'] === 'oracle' },
+          // { text: 'ORACLE_OCI8', value: 'oracle_oci8', selected: conf['type'] === 'oracle_oci8' },
+          // { text: 'PostgreSQL', value: 'postgresql', selected: conf['type'] === 'postgresql' },
+          // { text: 'PostgreSQL_PDO', value: 'postgresql_pdo', selected: conf['type'] === 'postgresql_pdo' },
+          { text: 'SQLite3', value: 'sqlite3', selected: conf['type'] === 'sqlite3' },
+          // { text: 'INFORMIX', value: 'informix', selected: conf['type'] === 'informix' }
         ] },
         { type: 'combo', label: LANG['form']['encode'], name: 'encode', options: ((c) => {
           let ret = [];
@@ -1521,6 +1522,10 @@ class CMDLINUX {
         case 'postgresql_pdo':
           presql = `SELECT * FROM ${table} ORDER BY 1 DESC LIMIT 20 OFFSET 0;`;
           break;
+        case 'sqlite3':
+        case 'sqlite_pdo':
+          presql = `SELECT * FROM "${db}"."${table}" ORDER BY 1 DESC limit 0,20;`;
+          break;
         default:
           presql = `SELECT * FROM \`${table}\` ORDER BY 1 DESC LIMIT 0,20;`;
           break;
@@ -1554,7 +1559,13 @@ class CMDLINUX {
   // 执行SQL
   execSQL(sql) {
     this.manager.query.layout.progressOn();
-
+    switch(this.dbconf['type']) {
+      case 'sqlite3':
+        if(sql.match(/(update|delete)\s+?/ig)) {
+          sql = `${sql};select changes() AS "Changes",total_changes() AS "Total Changes";`
+        }
+        break
+    }
     this.core.request(
       this.core[`database_${this.dbconf['type']}`].query({
         host: this.dbconf['host'],
@@ -1581,7 +1592,7 @@ class CMDLINUX {
 
   parseResult(data) {
     // 1.分割数组
-    const arr = data.split('\n');
+    const arr = data.split('\t|\t\r\n');
     // 2.判断数据
     if (arr.length < 2) {
       return toastr.error(LANG['result']['error']['parse'], LANG_T['error']);
@@ -1600,7 +1611,7 @@ class CMDLINUX {
     arr.map((_) => {
       let _data = _.split('\t|\t');
       for (let i = 0; i < _data.length; i ++) {
-        let buff = Buffer.from(_data[i], "base64");
+        let buff = Buffer.from(_data[i]);
         let encoding = Decodes.detectEncoding(buff, {defaultEncoding: "unknown"});
         if(encoding == "unknown") {
           switch(this.dbconf['type']){

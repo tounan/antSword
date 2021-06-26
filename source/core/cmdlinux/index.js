@@ -18,7 +18,6 @@ class CMDLINUX extends Base {
       'command',
       'filemanager',
       'database/mysql',
-      'database/postgresql',
       'database/sqlite3',
     ].map((_) => {
       this.parseTemplate(`./cmdlinux/template/${_}`);
