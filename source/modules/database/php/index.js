@@ -557,6 +557,8 @@ class PHP {
           { text: 'ORACLE_OCI8', value: 'oracle_oci8', selected: conf['type'] === 'oracle_oci8' },
           { text: 'PostgreSQL', value: 'postgresql', selected: conf['type'] === 'postgresql' },
           { text: 'PostgreSQL_PDO', value: 'postgresql_pdo', selected: conf['type'] === 'postgresql_pdo' },
+          { text: 'SQLite3', value: 'sqlite3', selected: conf['type'] === 'sqlite3' },
+          { text: 'SQLite3_PDO', value: 'sqlite3', selected: conf['type'] === 'sqlite3_pdo' },
           { text: 'INFORMIX', value: 'informix', selected: conf['type'] === 'informix' }
         ] },
         { type: 'combo', label: LANG['form']['encode'], name: 'encode', options: ((c) => {
@@ -1519,6 +1521,10 @@ class PHP {
         case 'postgresql':
         case 'postgresql_pdo':
           presql = `SELECT * FROM ${table} ORDER BY 1 DESC LIMIT 20 OFFSET 0;`;
+          break;
+        case 'sqlite3':
+        case 'sqlite_pdo':
+          presql = `SELECT * FROM "${db}"."${table}" ORDER BY 1 DESC limit 0,20;`;
           break;
         default:
           presql = `SELECT * FROM \`${table}\` ORDER BY 1 DESC LIMIT 0,20;`;

