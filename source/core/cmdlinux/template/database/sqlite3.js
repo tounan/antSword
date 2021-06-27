@@ -9,9 +9,6 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
     _: `SQLITEFILE="#{host}";
 if [ -f $SQLITEFILE ]; then echo -n "main\t"; else echo "ERROR:// $SQLITEFILE not found."; fi;
     `,
-    [arg1]: '#{host}',
-    [arg2]: '#{user}',
-    [arg3]: '#{passwd}'
   },
   // 显示数据库所有表
   show_tables: {
@@ -23,10 +20,6 @@ sqlite3  $SQLITEFILE <<EOF
 select tbl_name from sqlite_master where type='table' order by tbl_name;
 EOF
     `,
-    [arg1]: '#{host}',
-    [arg2]: '#{user}',
-    [arg3]: '#{passwd}',
-    [arg4]: '#{db}'
   },
   // 显示表字段
   show_columns: {
@@ -38,11 +31,6 @@ sqlite3  $SQLITEFILE <<EOF
 select name," (",type,")" from pragma_table_info('#{table}');
 EOF
     `,
-    [arg1]: '#{host}',
-    [arg2]: '#{user}',
-    [arg3]: '#{passwd}',
-    [arg4]: '#{db}',
-    [arg5]: '#{table}'
   },
   // 执行SQL语句
   query: {
@@ -54,11 +42,5 @@ sqlite3  $SQLITEFILE <<EOF
 #{sql}
 EOF
     `,
-    [arg1]: '#{host}',
-    [arg2]: '#{user}',
-    [arg3]: '#{passwd}',
-    [arg4]: '#{db}',
-    [arg5]: '#{base64::sql}',
-    [arg6]: '#{encode}'
   }
 })
