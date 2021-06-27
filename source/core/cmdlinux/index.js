@@ -41,7 +41,7 @@ class CMDLINUX extends Base {
    * @return {array} 编码器列表
    */
   get encoders() {
-    return [];
+    return ["base64"];
   }
 
   get decoders() {

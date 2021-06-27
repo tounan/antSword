@@ -71,6 +71,11 @@ class Encoders {
         type: 'button',
         text: "JSPJS"
       }, {
+        id: 'new_cmdlinux',
+        icon: 'file-code-o',
+        type: 'button',
+        text: "CMDLINUX"
+      }, {
         type: 'separator'
       }, {
         id: 'new_custom',
@@ -106,6 +111,11 @@ class Encoders {
         icon: 'file-code-o',
         type: 'button',
         text: "JSPJS"
+      }, {
+        id: 'new_cmdlinux_decoder',
+        icon: 'file-code-o',
+        type: 'button',
+        text: "CMDLINUX"
       }, {
         type: 'separator'
       }, {
@@ -156,6 +166,9 @@ class Encoders {
         case "new_jspjs":
           that.createEncoder(id);
           break;
+        case "new_cmdlinux":
+          that.createEncoder(id);
+          break;
         case "new_php":
         case "new_php_rsa":
           that.createEncoder(id);
@@ -170,6 +183,9 @@ class Encoders {
           that.createEncoder(id, 'decoder');
           break;
         case "new_jspjs_decoder":
+          that.createEncoder(id, 'decoder');
+          break;
+        case "new_cmdlinux_decoder":
           that.createEncoder(id, 'decoder');
           break;
         case "new_custom_decoder":
@@ -212,6 +228,7 @@ class Encoders {
     combobox.put("php", "PHP");
     combobox.put("jsp", "JSP");
     combobox.put("jspjs", "JSPJS");
+    combobox.put("cmdlinux", "CMDLINUX");
     combobox.put("custom", "CUSTOM");
 
     grid.attachEvent("onEditCell", function (stage, rId, cInd, nValue, oValue) {
@@ -243,7 +260,7 @@ class Encoders {
             break
           case 2:
             // type
-            if (nValue != "asp" && nValue != "aspx" && nValue != "php" && nValue != "jsp"&& nValue != "jspjs"&&nValue != "custom") {
+            if (nValue != "asp" && nValue != "aspx" && nValue != "php" && nValue != "jsp"&& nValue != "jspjs"&& nValue != "cmdlinux"&&nValue != "custom") {
               toastr.error(LANG['message']["etype_error"], LANG_T['error']);
               return
             }
@@ -784,6 +801,7 @@ module.exports = {
         php: [],
         jsp: [],
         jspjs: [],
+        cmdlinux: [],
         custom: [],
       };
       var encoders_path = {
@@ -792,6 +810,7 @@ module.exports = {
         php: [],
         jsp: [],
         jspjs: [],
+        cmdlinux: [],
         custom: [],
       };
       let userencoder_path = path.join(remote.process.env.AS_WORKDIR, 'antData/encoders');
@@ -799,7 +818,7 @@ module.exports = {
       !fs.existsSync(userencoder_path) ?
         fs.mkdirSync(userencoder_path) :
         null;
-      ['asp', 'aspx', 'php', 'jsp','jspjs' , 'custom'].map((t) => {
+      ['asp', 'aspx', 'php', 'jsp','jspjs' , 'custom', 'cmdlinux'].map((t) => {
         !fs.existsSync(path.join(userencoder_path, `${t}`)) ?
           fs.mkdirSync(path.join(userencoder_path, `${t}`)) :
           null;
@@ -835,6 +854,7 @@ module.exports = {
         php: [],
         jsp: [],
         jspjs: [],
+        cmdlinux: [],
         custom: []
       };
       var decoders_path = {
@@ -843,6 +863,7 @@ module.exports = {
         php: [],
         jsp: [],
         jspjs: [],
+        cmdlinux: [],
         custom: []
       };
       let userdecoder_path = path.join(remote.process.env.AS_WORKDIR, 'antData/encoders');
@@ -850,7 +871,7 @@ module.exports = {
       !fs.existsSync(userdecoder_path) ?
         fs.mkdirSync(userdecoder_path) :
         null;
-      ['asp', 'aspx', 'php', 'jsp','jspjs', 'custom'].map((t) => {
+      ['asp', 'aspx', 'php', 'jsp','jspjs', 'custom', 'cmdlinux'].map((t) => {
         !fs.existsSync(path.join(userdecoder_path, `${t}`)) ?
           fs.mkdirSync(path.join(userdecoder_path, `${t}`)) :
           null;

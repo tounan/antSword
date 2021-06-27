@@ -12,10 +12,16 @@ module.exports = (arg1, arg2, arg3) => ({
   },
 
   create_file: {
-    _: `cat>#{path}<<'EOF'
-#{content}
-EOF
-if [ $? = 0 ]; then echo -n 1; else echo -n 0; fi;`
+    _: `command_exists() { command -v "$@" > /dev/null 2>&1; };
+    ACONTENT="#{buffer::content}";
+    ADSTPATH="#{path}";
+    if command_exists xxd; then 
+      echo -n $ACONTENT|xxd -r -p > $ADSTPATH && echo -n 1||echo -n 0; 
+    elif command_exists python3; then 
+      echo -n $ACONTENT|python3 -c "import sys, binascii; sys.stdout.buffer.write(binascii.unhexlify(input().strip()))">$ADSTPATH && echo -n 1||echo -n 0; 
+    else 
+      echo -n $ACONTENT|sed 's/\\([0-9A-F]\\{2\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf>$ADSTPATH && echo -n 1||echo -n 0; 
+    fi;`.replace(/\n\s+/g, '')
   },
 
   read_file: {
@@ -32,16 +38,15 @@ if [ $? = 0 ]; then echo -n 1; else echo -n 0; fi;`
 
   upload_file: {
     _: `command_exists() { command -v "$@" > /dev/null 2>&1; };
-ACONTENT="#{buffer::content}";
-ADSTPATH="#{path}";
-if command_exists xxd; then 
-  echo -n $ACONTENT|xxd -r -p >> $ADSTPATH && echo -n 1||echo -n 0; 
-elif command_exists python3; then 
-  echo -n $ACONTENT|python3 -c "import sys, binascii; sys.stdout.buffer.write(binascii.unhexlify(input().strip()))">>$ADSTPATH && echo -n 1||echo -n 0; 
-else 
-  echo -n $ACONTENT|sed 's/\\([0-9A-F]\\{2\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf>>$ADSTPATH && echo -n 1||echo -n 0; 
-fi;
-    `
+    ACONTENT="#{buffer::content}";
+    ADSTPATH="#{path}";
+    if command_exists xxd; then 
+      echo -n $ACONTENT|xxd -r -p >> $ADSTPATH && echo -n 1||echo -n 0; 
+    elif command_exists python3; then 
+      echo -n $ACONTENT|python3 -c "import sys, binascii; sys.stdout.buffer.write(binascii.unhexlify(input().strip()))">>$ADSTPATH && echo -n 1||echo -n 0; 
+    else 
+      echo -n $ACONTENT|sed 's/\\([0-9A-F]\\{2\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf>>$ADSTPATH && echo -n 1||echo -n 0; 
+    fi;`.replace(/\n\s+/g, '')
   },
 
   rename: {
@@ -62,15 +67,15 @@ fi;
 
   wget: {
     _: `command_exists() { command -v "$@" > /dev/null 2>&1; };
-ascurl=''
-if command_exists curl; then 
-  ascurl='curl -ksSL -o';
-elif command_exists wget; then 
-  ascurl='wget --no-check-certificate -qO';
-elif command_exists busybox && busybox --list-modules | grep -q wget; then 
-  ascurl='busybox wget --no-check-certificate -qO'
-fi;
-$ascurl #{path} #{url} && echo -n 1||echo -n 0;
-    `
+      ascurl=''
+      if command_exists curl; then 
+        ascurl='curl -ksSL -o';
+      elif command_exists wget; then 
+        ascurl='wget --no-check-certificate -qO';
+      elif command_exists busybox && busybox --list-modules | grep -q wget; then 
+        ascurl='busybox wget --no-check-certificate -qO'
+      fi;
+      $ascurl #{path} #{url} && echo -n 1||echo -n 0;
+    `.replace(/\n\s+/g, '')
   }
 })
