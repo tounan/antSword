@@ -4,11 +4,11 @@
 
 module.exports = (arg1, arg2, arg3) => ({
   dir: {
-    _: `cd #{path} && find . -maxdepth 1 \\( -type d -printf "%f/\\t%AY-%Am-%Ad %AH:%AM:%AS\\t%s\t%.4m\\n" \\) , \\( -not -type d -printf "%f\\t%AY-%Am-%Ad %AH:%AM:%AS\\t%s\\t%.4m\\n" \\)||echo -n "ERROR:// Path not found OR no Permission";`
+    _: `cd #{path} && find . -maxdepth 1 \\( -type d -printf "%f/\\t%AY-%Am-%Ad %AH:%AM:%AS\\t%s\t%.4m\\n" \\) , \\( -not -type d -printf "%f\\t%AY-%Am-%Ad %AH:%AM:%AS\\t%s\\t%.4m\\n" \\)||echo -ne "ERROR:// Path not found OR no Permission";`
   },
 
   delete: {
-    _: `rm -rf #{path} && echo -n 1||echo -n 0;`,
+    _: `rm -rf #{path} && echo -ne 1||echo -ne 0;`,
   },
 
   create_file: {
@@ -16,20 +16,20 @@ module.exports = (arg1, arg2, arg3) => ({
     ACONTENT="#{buffer::content}";
     ADSTPATH="#{path}";
     if command_exists xxd; then 
-      echo -n $ACONTENT|xxd -r -p > $ADSTPATH && echo -n 1||echo -n 0; 
+      echo -ne $ACONTENT|xxd -r -p > $ADSTPATH && echo -ne 1||echo -ne 0; 
     elif command_exists python3; then 
-      echo -n $ACONTENT|python3 -c "import sys, binascii; sys.stdout.buffer.write(binascii.unhexlify(input().strip()))">$ADSTPATH && echo -n 1||echo -n 0; 
+      echo -ne $ACONTENT|python3 -c "import sys, binascii; sys.stdout.buffer.write(binascii.unhexlify(input().strip()))">$ADSTPATH && echo -ne 1||echo -ne 0; 
     else 
-      echo -n $ACONTENT|sed 's/\\([0-9A-F]\\{2\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf>$ADSTPATH && echo -n 1||echo -n 0; 
+      echo -ne $ACONTENT|sed 's/\\([0-9A-F]\\{2\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf>$ADSTPATH && echo -ne 1||echo -ne 0; 
     fi;`.replace(/\n\s+/g, '')
   },
 
   read_file: {
-    _: `cat #{path}||echo -n "ERROR:// File not found or no Permission";`
+    _: `cat #{path}||echo -ne "ERROR:// File not found or no Permission";`
   },
 
   copy: {
-    _: `cp -af #{path} #{target} && echo -n 1||echo -n 0;`
+    _: `cp -af #{path} #{target} && echo -ne 1||echo -ne 0;`
   },
 
   download_file: {
@@ -41,28 +41,28 @@ module.exports = (arg1, arg2, arg3) => ({
     ACONTENT="#{buffer::content}";
     ADSTPATH="#{path}";
     if command_exists xxd; then 
-      echo -n $ACONTENT|xxd -r -p >> $ADSTPATH && echo -n 1||echo -n 0; 
+      echo -ne $ACONTENT|xxd -r -p >> $ADSTPATH && echo -ne 1||echo -ne 0; 
     elif command_exists python3; then 
-      echo -n $ACONTENT|python3 -c "import sys, binascii; sys.stdout.buffer.write(binascii.unhexlify(input().strip()))">>$ADSTPATH && echo -n 1||echo -n 0; 
+      echo -ne $ACONTENT|python3 -c "import sys, binascii; sys.stdout.buffer.write(binascii.unhexlify(input().strip()))">>$ADSTPATH && echo -ne 1||echo -ne 0; 
     else 
-      echo -n $ACONTENT|sed 's/\\([0-9A-F]\\{2\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf>>$ADSTPATH && echo -n 1||echo -n 0; 
+      echo -ne $ACONTENT|sed 's/\\([0-9A-F]\\{2\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf>>$ADSTPATH && echo -ne 1||echo -ne 0; 
     fi;`.replace(/\n\s+/g, '')
   },
 
   rename: {
-    _: `mv #{path} #{name} && echo -n 1||echo -n 0;`
+    _: `mv #{path} #{name} && echo -ne 1||echo -ne 0;`
   },
 
   retime: {
-    _: `touch -d "#{time}" #{path} && echo -n 1||echo -n 0;`
+    _: `touch -d "#{time}" #{path} && echo -ne 1||echo -ne 0;`
   },
 
   chmod: {
-    _: `chmod #{mode} #{path} && echo -n 1||echo -n 0;`
+    _: `chmod #{mode} #{path} && echo -ne 1||echo -ne 0;`
   },
 
   mkdir: {
-    _: `mkdir -p #{path} && echo -n 1||echo -n 0;`,
+    _: `mkdir -p #{path} && echo -ne 1||echo -ne 0;`,
   },
 
   wget: {
@@ -75,7 +75,7 @@ module.exports = (arg1, arg2, arg3) => ({
       elif command_exists busybox && busybox --list-modules | grep -q wget; then 
         ascurl='busybox wget --no-check-certificate -qO'
       fi;
-      $ascurl #{path} #{url} && echo -n 1||echo -n 0;
+      $ascurl #{path} #{url} && echo -ne 1||echo -ne 0;
     `.replace(/\n\s+/g, '')
   }
 })

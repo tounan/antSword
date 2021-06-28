@@ -8,13 +8,13 @@ module.exports = () => ({
     _: `ACWD=$(pwd);
     AUNAME=$(uname -a);
     AUSER=$(whoami);
-    echo -n "$ACWD\\t/\\t$AUNAME\\t$AUSER";`.replace(/\n\s+/g, '')
+    echo -ne "$ACWD\\t/\\t$AUNAME\\t$AUSER";`.replace(/\n\s+/g, '')
   },
   probedb: { // 检测数据库函数支持
     _: `command_exists() { command -v "$@" > /dev/null 2>&1; };
     DBLIST="mysql psql sqlite3";
     for v in $DBLIST; do 
-      if command_exists $v; then echo "$v\\t1"; else echo "$v\\t0"; fi;
+      if command_exists $v; then echo -e "$v\\t1"; else echo -e "$v\\t0"; fi;
     done;`.replace(/\n\s+/g, '')
   }
 })
