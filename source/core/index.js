@@ -5,7 +5,6 @@
  * 作者：蚁逅 <https://github.com/antoor>
  */
 'use strict';
-
 class Core {
   /**
    * AntSword Core init
@@ -14,7 +13,7 @@ class Core {
   constructor() {
     // 加载子模块列表
     let cores = {};
-    ['php', 'asp', 'aspx', 'jsp','jspjs', 'custom', 'php4'].map((_) => {
+    antSword['core_types'].map((_) => {
       cores[_] = require(`./${_}/index`);
     });
     // 返回子模块对象
