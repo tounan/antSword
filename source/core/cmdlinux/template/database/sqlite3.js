@@ -7,13 +7,13 @@ module.exports = (arg1, arg2, arg3, arg4, arg5, arg6) => ({
   // 显示所有数据库
   show_databases: {
     _: `SQLITEFILE="#{host}";
-if [ -f $SQLITEFILE ]; then echo -n "main\t"; else echo "ERROR:// $SQLITEFILE not found."; fi;
+if [ -f $SQLITEFILE ]; then echo -n "main\t"; else echo -n "ERROR:// $SQLITEFILE not found."; fi;
     `,
   },
   // 显示数据库所有表
   show_tables: {
     _: `SQLITEFILE="#{host}";
-if [ ! -f $SQLITEFILE ]; then echo "ERROR:// $SQLITEFILE not found."; exit; fi;
+if [ ! -f $SQLITEFILE ]; then echo -n "ERROR:// $SQLITEFILE not found."; exit; fi;
 sqlite3  $SQLITEFILE <<EOF
 .headers off
 .separator "" "\\t"
@@ -24,7 +24,7 @@ EOF
   // 显示表字段
   show_columns: {
     _: `SQLITEFILE="#{host}";
-if [ ! -f $SQLITEFILE ]; then echo "ERROR:// $SQLITEFILE not found."; exit; fi;
+if [ ! -f $SQLITEFILE ]; then echo -n "ERROR:// $SQLITEFILE not found."; exit; fi;
 sqlite3  $SQLITEFILE <<EOF
 .separator "" "\\t"
 .headers off
@@ -35,7 +35,7 @@ EOF
   // 执行SQL语句
   query: {
     _: `SQLITEFILE="#{host}";
-if [ ! -f $SQLITEFILE ]; then echo "ERROR:// $SQLITEFILE not found."; exit; fi;
+if [ ! -f $SQLITEFILE ]; then echo -n "ERROR:// $SQLITEFILE not found."; exit; fi;
 sqlite3  $SQLITEFILE <<EOF
 .separator "\\t|\\t" "\\t|\\t\\r\\n"
 .headers on

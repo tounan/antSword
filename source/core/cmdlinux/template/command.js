@@ -7,11 +7,11 @@ module.exports = (arg1, arg2, arg3) => ({
     _: `command_exists() { command -v "$@" > /dev/null 2>&1; };
     AENVSTR="#{buffer::env}";
     if command_exists xxd; then 
-      ENVSTR=$(echo -ne $AENVSTR|xxd -r -p); 
+      ENVSTR=$(echo -n $AENVSTR|xxd -r -p); 
     elif command_exists python3; then 
-      ENVSTR=$(echo -ne $AENVSTR|python3 -c "import sys, binascii; sys.stdout.buffer.write(binascii.unhexlify(input().strip()))"); 
+      ENVSTR=$(echo -n $AENVSTR|python3 -c "import sys, binascii; sys.stdout.buffer.write(binascii.unhexlify(input().strip()))"); 
     else 
-      ENVSTR=$(echo -ne $AENVSTR|sed 's/\\([0-9A-F]\\{2\\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf); 
+      ENVSTR=$(echo -n $AENVSTR|sed 's/\\([0-9A-F]\\{2\\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf); 
     fi;
     while [ $ENVSTR ]; do 
       ASLINE=\${ENVSTR%%"|||asline|||"*};
