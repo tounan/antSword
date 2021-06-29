@@ -20,7 +20,7 @@ module.exports = (arg1, arg2, arg3) => ({
     elif command_exists python3; then 
       echo -n $ACONTENT|python3 -c "import sys, binascii; sys.stdout.buffer.write(binascii.unhexlify(input().strip()))">$ADSTPATH && echo -n 1||echo -n 0; 
     else 
-      echo -n $ACONTENT|sed 's/\\([0-9A-F]\\{2\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf>$ADSTPATH && echo -n 1||echo -n 0; 
+      echo -n $ACONTENT|sed 's/\\([0-9A-F]\\{2\\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf>$ADSTPATH && echo -n 1||echo -n 0; 
     fi;`.replace(/\n\s+/g, '')
   },
 
@@ -45,7 +45,7 @@ module.exports = (arg1, arg2, arg3) => ({
     elif command_exists python3; then 
       echo -n $ACONTENT|python3 -c "import sys, binascii; sys.stdout.buffer.write(binascii.unhexlify(input().strip()))">>$ADSTPATH && echo -n 1||echo -n 0; 
     else 
-      echo -n $ACONTENT|sed 's/\\([0-9A-F]\\{2\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf>>$ADSTPATH && echo -n 1||echo -n 0; 
+      echo -n $ACONTENT|sed 's/\\([0-9A-F]\\{2\\}\\)/\\\\\\\\\\\\x\\1/gI'|xargs printf>>$ADSTPATH && echo -n 1||echo -n 0; 
     fi;`.replace(/\n\s+/g, '')
   },
 
