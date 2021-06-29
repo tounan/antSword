@@ -8,8 +8,9 @@ const LANG_T = antSword['language']['toastr'];
 const dialog = antSword.remote.dialog;
 const fs = require('fs');
 const Decodes = antSword.Decodes;
+const xml2js = require('xml2js');
 
-class PHP {
+class CMDLINUX {
 
   constructor(opt) {
     this.opt = opt;
@@ -263,16 +264,16 @@ class PHP {
     };
     this.encode_mapping = {
       'mysql': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
-      'mysqli': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
-      'mssql': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
-      'sqlsrv': ['utf-8', 'char'],
-      'oracle': ['UTF8','ZHS16GBK','ZHT16BIG5','ZHS16GBKFIXED','ZHT16BIG5FIXED'],
-      'oracle_oci8': ['UTF8','ZHS16GBK','ZHT16BIG5','ZHS16GBKFIXED','ZHT16BIG5FIXED'],
-      'postgresql': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
-      'postgresql_pdo': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
+      // 'mysqli': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
+      // 'mssql': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
+      // 'sqlsrv': ['utf-8', 'char'],
+      // 'oracle': ['UTF8','ZHS16GBK','ZHT16BIG5','ZHS16GBKFIXED','ZHT16BIG5FIXED'],
+      // 'oracle_oci8': ['UTF8','ZHS16GBK','ZHT16BIG5','ZHS16GBKFIXED','ZHT16BIG5FIXED'],
+      // 'postgresql': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
+      // 'postgresql_pdo': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
       'sqlite3': ['utf8'],
-      'sqlite_pdo': ['utf8'],
-      'informix': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
+      // 'sqlite_pdo': ['utf8'],
+      // 'informix': ['utf8', 'big5', 'dec8', 'cp850', 'hp8', 'koi8r', 'latin1', 'latin2', 'ascii', 'euckr', 'gb2312', 'gbk'],
     }
   }
 
@@ -344,16 +345,16 @@ class PHP {
       { type: 'block', inputWidth: 'auto', offsetTop: 12, list: [
         { type: 'combo', label: LANG['form']['type'], readonly: true, name: 'type', options: [
           { text: 'MYSQL', value: 'mysql' },
-          { text: 'MYSQLI', value: 'mysqli' },
-          { text: 'MSSQL', value: 'mssql' },
-          { text: 'SQLSRV', value: 'sqlsrv' },
-          { text: 'ORACLE', value: 'oracle' },
-          { text: 'ORACLE_OCI8', value: 'oracle_oci8' },
-          { text: 'PostgreSQL', value: 'postgresql' },
-          { text: 'PostgreSQL_PDO', value: 'postgresql_pdo' },
+          // { text: 'MYSQLI', value: 'mysqli' },
+          // { text: 'MSSQL', value: 'mssql' },
+          // { text: 'SQLSRV', value: 'sqlsrv' },
+          // { text: 'ORACLE', value: 'oracle' },
+          // { text: 'ORACLE_OCI8', value: 'oracle_oci8' },
+          // { text: 'PostgreSQL', value: 'postgresql' },
+          // { text: 'PostgreSQL_PDO', value: 'postgresql_pdo' },
           { text: 'SQLite3', value: 'sqlite3' },
-          { text: 'SQLite_PDO', value: 'sqlite_pdo' },
-          { text: 'INFORMIX', value: 'informix' }
+          // { text: 'SQLite_PDO', value: 'sqlite_pdo' },
+          // { text: 'INFORMIX', value: 'informix' }
         ] },
         { type: 'combo', label: LANG['form']['encode'], name: 'encode', options: ((c) => {
           let ret = [];
@@ -550,16 +551,15 @@ class PHP {
       { type: 'block', inputWidth: 'auto', offsetTop: 12, list: [
         { type: 'combo', label: LANG['form']['type'], readonly: true, name: 'type', options: [
           { text: 'MYSQL', value: 'mysql', selected: conf['type'] === 'mysql' },
-          { text: 'MYSQLI', value: 'mysqli', selected: conf['type'] === 'mysqli' },
-          { text: 'MSSQL', value: 'mssql', selected: conf['type'] === 'mssql' },
-          { text: 'SQLSRV', value: 'sqlsrv', selected: conf['type'] === 'sqlsrv' },
-          { text: 'ORACLE', value: 'oracle', selected: conf['type'] === 'oracle' },
-          { text: 'ORACLE_OCI8', value: 'oracle_oci8', selected: conf['type'] === 'oracle_oci8' },
-          { text: 'PostgreSQL', value: 'postgresql', selected: conf['type'] === 'postgresql' },
-          { text: 'PostgreSQL_PDO', value: 'postgresql_pdo', selected: conf['type'] === 'postgresql_pdo' },
+          // { text: 'MYSQLI', value: 'mysqli', selected: conf['type'] === 'mysqli' },
+          // { text: 'MSSQL', value: 'mssql', selected: conf['type'] === 'mssql' },
+          // { text: 'SQLSRV', value: 'sqlsrv', selected: conf['type'] === 'sqlsrv' },
+          // { text: 'ORACLE', value: 'oracle', selected: conf['type'] === 'oracle' },
+          // { text: 'ORACLE_OCI8', value: 'oracle_oci8', selected: conf['type'] === 'oracle_oci8' },
+          // { text: 'PostgreSQL', value: 'postgresql', selected: conf['type'] === 'postgresql' },
+          // { text: 'PostgreSQL_PDO', value: 'postgresql_pdo', selected: conf['type'] === 'postgresql_pdo' },
           { text: 'SQLite3', value: 'sqlite3', selected: conf['type'] === 'sqlite3' },
-          { text: 'SQLite3_PDO', value: 'sqlite3', selected: conf['type'] === 'sqlite3_pdo' },
-          { text: 'INFORMIX', value: 'informix', selected: conf['type'] === 'informix' }
+          // { text: 'INFORMIX', value: 'informix', selected: conf['type'] === 'informix' }
         ] },
         { type: 'combo', label: LANG['form']['encode'], name: 'encode', options: ((c) => {
           let ret = [];
@@ -1559,7 +1559,13 @@ class PHP {
   // 执行SQL
   execSQL(sql) {
     this.manager.query.layout.progressOn();
-
+    switch(this.dbconf['type']) {
+      case 'sqlite3':
+        if(sql.match(/(update|delete)\s+?/ig)) {
+          sql = `${sql};select changes() AS "Changes",total_changes() AS "Total Changes";`
+        }
+        break
+    }
     this.core.request(
       this.core[`database_${this.dbconf['type']}`].query({
         host: this.dbconf['host'],
@@ -1574,6 +1580,7 @@ class PHP {
       if (ret.indexOf("ERROR://") > -1) {
         throw ret;
       }
+      console.log(ret);
       // 更新执行结果
       this.updateResult(ret);
       this.manager.query.layout.progressOff();
@@ -1585,7 +1592,7 @@ class PHP {
 
   parseResult(data) {
     // 1.分割数组
-    const arr = data.split('\n');
+    const arr = data.split('\t|\t\r\n');
     // 2.判断数据
     if (arr.length < 2) {
       return toastr.error(LANG['result']['error']['parse'], LANG_T['error']);
@@ -1604,7 +1611,7 @@ class PHP {
     arr.map((_) => {
       let _data = _.split('\t|\t');
       for (let i = 0; i < _data.length; i ++) {
-        let buff = Buffer.from(_data[i], "base64");
+        let buff = Buffer.from(_data[i]);
         let encoding = Decodes.detectEncoding(buff, {defaultEncoding: "unknown"});
         if(encoding == "unknown") {
           switch(this.dbconf['type']){
@@ -1643,62 +1650,53 @@ class PHP {
     }
   }
 
+  parseResultXML(data) {
+    let parser = new xml2js.Parser(/* options */);
+    let header_arr = [];
+    let data_arr = [];
+    data = antSword.unxss(data);
+    parser.parseString(data, (err, result) => {
+      if(err) {
+        return toastr.error(LANG['result']['error']['parse'], LANG_T['error']);
+      }
+      var resultset = result.resultset;
+      console.log(resultset)
+      if(!resultset.hasOwnProperty('row')) {
+        header_arr = ['Status'];
+        data_arr = ['Empty Result']
+        return
+      }
+      var rows = resultset.row;
+      rows[0].field.forEach(h => {
+        header_arr.push(antSword.noxss(h['$'].name));
+      });
+      rows.forEach(row => {
+        let _data = [];
+        row.field.forEach(col => {
+          _data.push(antSword.noxss(col['_']));
+        });
+        data_arr.push(_data);
+      });
+    });
+    return {
+      headers: header_arr,
+      datas: data_arr
+    }
+  }
+
   // 更新SQL执行结果
   updateResult(data) {
-    // 1.分割数组
-    const arr = data.split('\n');
-    // 2.判断数据
-    if (arr.length < 2) {
-      return toastr.error(LANG['result']['error']['parse'], LANG_T['error']);
+    let res;
+    switch(this.dbconf['type']) {
+      case 'mysql':
+        res = this.parseResultXML(data);
+        break;
+      default:
+        res = this.parseResult(data);
+        break;
     };
-    // 3.行头
-    let header_arr = (arr[0]).replace(/,/g, '&#44;').split('\t|\t');
-    if (header_arr.length === 1) {
-      return toastr.warning(LANG['result']['error']['noresult'], LANG_T['warning']);
-    };
-    if (header_arr[header_arr.length - 1] === '\r') {
-      header_arr.pop();
-    };
-    arr.shift();
-    // 4.数据
-    let data_arr = [];
-    arr.map((_) => {
-      let _data = _.split('\t|\t');
-      for (let i = 0; i < _data.length; i ++) {
-        // _data[i] = antSword.noxss(new Buffer(_data[i], "base64").toString(), false);
-        let buff = new Buffer.from(_data[i], "base64");
-        let encoding = Decodes.detectEncoding(buff, {defaultEncoding: "unknown"});
-        if(encoding == "unknown") {
-          switch(this.dbconf['type']){
-            case 'sqlsrv':
-              var sqlsrv_conncs_mapping = {
-                'utf-8': 'utf8',
-                'char': '',
-              }
-              encoding = sqlsrv_conncs_mapping[this.dbconf['encode']] || '';
-              break;
-            case 'oracle_oci8':
-              var oci8_characterset_mapping = {
-                'UTF8': 'utf8',
-                'ZHS16GBK':'gbk',
-                'ZHT16BIG5': 'big5',
-                'ZHS16GBKFIXED': 'gbk',
-                'ZHT16BIG5FIXED': 'big5', 
-              }
-              encoding = oci8_characterset_mapping[this.dbconf['encode']] || '';
-              break;
-            default:
-              encoding = this.dbconf['encode'] || '';
-              break;
-          }
-        }
-        encoding = encoding != "" ? encoding : this.opt.core.__opts__['encode'];
-        let text = Decodes.decode(buff, encoding);
-      	_data[i] = antSword.noxss(text, false);
-      }
-      data_arr.push(_data);
-    });
-    data_arr.pop();
+    let data_arr = res.datas;
+    let header_arr = res.headers;
     // 5.初始化表格
     const grid = this.manager.result.layout.attachGrid();
     grid.clearAll();
@@ -1771,4 +1769,4 @@ class PHP {
 
 }
 
-module.exports = PHP;
+module.exports = CMDLINUX;

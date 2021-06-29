@@ -168,7 +168,7 @@ const antSword = window.antSword = {
 };
 
 //核心模块类型列表
-antSword['core_types'] = ['asp', 'aspx', 'php','php4', 'jsp','jspjs' , 'custom'];
+antSword['core_types'] = ['asp','aspx','php','php4','jsp','jspjs','cmdlinux','custom'];
 
 // 加载核心模板
 antSword['core'] = require('./core/');
