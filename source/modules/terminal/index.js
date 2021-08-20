@@ -51,6 +51,8 @@ class Terminal {
     this.core = new antSword['core'][opts['type']](opts);
     this.cache = new antSword['CacheManager'](this.opts['_id']);
     this.asenvironmet = {};
+    this.stag = Math.random().toString(16).substr(2, parseInt(Math.random() * 8 + 5));
+    this.etag = Math.random().toString(16).substr(2, parseInt(Math.random() * 8 + 5));
 
     this
       .getInformation()
@@ -346,15 +348,14 @@ class Terminal {
         .then((ret) => {
           let _ = antSword.unxss(ret['text'], false);
           // 解析出命令执行路径
-          const indexS = _.lastIndexOf('[S]');
-          const indexE = _.lastIndexOf('[E]');
-          let _path = _.substr(indexS + 3, indexE - indexS - 3);
-
-          let output = _.replace(`[S]${_path}[E]`, '');
+          const indexS = _.lastIndexOf(this.stag);
+          const indexE = _.lastIndexOf(this.etag);
+          let _path = _.substring(indexS+this.stag.length, indexE);
+          let output = _.replace(`${this.stag}${_path}${this.etag}`, '');
+          console.log(output)
           _path = _path
             .replace(/\n/g, '')
             .replace(/\r/g, '');
-
           this.path = _path || this.path;
           term.set_prompt(this.parsePrompt(infoUser));
 
@@ -400,9 +401,9 @@ class Terminal {
       completion: (value, callback) => {
         callback(['asenv', 'ashelp', 'ascmd', 'aslistcmd', 'aspowershell', 'aswinmode', 'quit', 'exit'].concat(
           this.isWin ? [
-            'dir', 'whoami', 'net', 'ipconfig', 'netstat', 'cls', 'wscript', 'nslookup', 'copy', 'del', 'ren', 'md', 'type', 'ping'
+            'dir', 'whoami', 'net', 'ipconfig', 'netstat', 'cls', 'wscript', 'nslookup', 'copy', 'del', 'ren', 'md', 'type', 'ping', 'quser', 'arp', 'netsh', 'findstr', 'tasklist', 'taskkill'
           ] : [
-            'cd', 'ls', 'find', 'cp', 'mv', 'rm', 'ps', 'kill', 'file', 'tar', 'cat', 'chown', 'chmod', 'pwd', 'history', 'whoami', 'ifconfig', 'clear', 'ping'
+            'cd', 'ls', 'find', 'cp', 'mv', 'rm', 'ps', 'kill', 'file', 'tar', 'cat', 'chown', 'chmod', 'pwd', 'history', 'whoami', 'ifconfig', 'clear', 'ping', 'curl', 'wget', 'ip', 'grep', 'nohup', 'md5sum', 'lsattr', 'touch', 'netstat'
           ]))
       },
       keydown: (event, terminal) => {
@@ -457,9 +458,9 @@ class Terminal {
       .replace(/\\/g, '\\\\');
     return (this.isWin ?
       this.isPowershell ?
-      `cd "${path}";${cmd};echo [S];(pwd).path;echo [E]` :
-      `cd /d "${path}"&${cmd}&echo [S]&cd&echo [E]` :
-      `cd "${path}";${cmd};echo [S];pwd;echo [E]`);
+      `cd "${path}";${cmd};echo ${this.stag};(pwd).path;echo ${this.etag}` :
+      `cd /d "${path}"&${cmd}&echo ${this.stag}&cd&echo ${this.etag}` :
+      `cd "${path}";${cmd};echo ${this.stag};pwd;echo ${this.etag}`);
   }
 
   /**

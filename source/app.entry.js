@@ -75,6 +75,11 @@ const antSword = window.antSword = {
    * @type {Object}
    */
   core: {},
+    /**
+   * 核心模块类型列表
+   * @type {Object}
+   */
+  core_types: {},
   /**
    * 插件列表
    * @type {Object}
@@ -162,6 +167,9 @@ const antSword = window.antSword = {
   }
 };
 
+//核心模块类型列表
+antSword['core_types'] = ['asp','aspx','php','php4','jsp','jspjs','cmdlinux','custom'];
+
 // 加载核心模板
 antSword['core'] = require('./core/');
 
@@ -170,26 +178,19 @@ antSword['language'] = require('./language/');
 
 // 加载编码
 antSword['encoders'] = (function () {
-  var encoders = {
-    asp: [],
-    aspx: [],
-    jsp: [],
-    php: [],
-    custom: []
-  };
-  var encoders_path = {
-    asp: [],
-    aspx: [],
-    jsp: [],
-    php: [],
-    custom: []
-  };
+  var encoders = {};
+  var encoders_path = {};
+  for (var i in antSword['core_types']) {
+    encoders[antSword['core_types'][i]] = [];
+    encoders_path[antSword['core_types'][i]] = [];
+  }
+
   let userencoder_path = path.join(remote.process.env.AS_WORKDIR, 'antData/encoders');
   // 初始化
   !fs.existsSync(userencoder_path) ?
     fs.mkdirSync(userencoder_path) :
     null;
-  ['asp', 'aspx', 'php', 'jsp', 'custom'].map((t) => {
+    antSword['core_types'].map((t) => {
     !fs.existsSync(path.join(userencoder_path, `${t}`)) ?
       fs.mkdirSync(path.join(userencoder_path, `${t}`)) :
       null;
@@ -225,26 +226,19 @@ antSword['encoders'] = (function () {
 
 // 加载解码器
 antSword['decoders'] = (function () {
-  var decoders = {
-    asp: [],
-    aspx: [],
-    php: [],
-    jsp: [],
-    custom: []
-  };
-  var decoders_path = {
-    asp: [],
-    aspx: [],
-    php: [],
-    jsp: [],
-    custom: []
-  };
+  var decoders = {};
+  var decoders_path = {};
+  for (var i in antSword['core_types']) {
+    decoders[antSword['core_types'][i]] = [];
+    decoders_path[antSword['core_types'][i]] = [];
+  }
+
   let userdecoder_path = path.join(remote.process.env.AS_WORKDIR, 'antData/encoders');
   // 初始化
   !fs.existsSync(userdecoder_path) ?
     fs.mkdirSync(userdecoder_path) :
     null;
-    ['asp', 'aspx', 'php', 'jsp', 'custom'].map((t) => {
+    antSword['core_types'].map((t) => {
     !fs.existsSync(path.join(userdecoder_path, `${t}`)) ?
       fs.mkdirSync(path.join(userdecoder_path, `${t}`)) :
       null;

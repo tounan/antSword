@@ -66,6 +66,16 @@ class Encoders {
         type: 'button',
         text: "JSP"
       }, {
+        id: 'new_jspjs',
+        icon: 'file-code-o',
+        type: 'button',
+        text: "JSPJS"
+      }, {
+        id: 'new_cmdlinux',
+        icon: 'file-code-o',
+        type: 'button',
+        text: "CMDLINUX"
+      }, {
         type: 'separator'
       }, {
         id: 'new_custom',
@@ -96,6 +106,16 @@ class Encoders {
         icon: 'file-code-o',
         type: 'button',
         text: "JSP"
+      }, {
+        id: 'new_jspjs_decoder',
+        icon: 'file-code-o',
+        type: 'button',
+        text: "JSPJS"
+      }, {
+        id: 'new_cmdlinux_decoder',
+        icon: 'file-code-o',
+        type: 'button',
+        text: "CMDLINUX"
       }, {
         type: 'separator'
       }, {
@@ -143,6 +163,12 @@ class Encoders {
         case "new_jsp":
           that.createEncoder(id);
           break;
+        case "new_jspjs":
+          that.createEncoder(id);
+          break;
+        case "new_cmdlinux":
+          that.createEncoder(id);
+          break;
         case "new_php":
         case "new_php_rsa":
           that.createEncoder(id);
@@ -154,6 +180,12 @@ class Encoders {
           that.createEncoder(id, 'decoder');
           break;
         case "new_jsp_decoder":
+          that.createEncoder(id, 'decoder');
+          break;
+        case "new_jspjs_decoder":
+          that.createEncoder(id, 'decoder');
+          break;
+        case "new_cmdlinux_decoder":
           that.createEncoder(id, 'decoder');
           break;
         case "new_custom_decoder":
@@ -191,11 +223,9 @@ class Encoders {
     grid.setColAlign("center,left,center,center");
     grid.enableMultiselect(true);
     var combobox = grid.getCombo(2);
-    combobox.put("asp", "ASP");
-    combobox.put("aspx", "ASPX");
-    combobox.put("php", "PHP");
-    combobox.put("jsp", "JSP");
-    combobox.put("custom", "CUSTOM");
+    antSword['core_types'].map((t)=>{
+      combobox.put(t,t.toUpperCase());
+    });
 
     grid.attachEvent("onEditCell", function (stage, rId, cInd, nValue, oValue) {
       // 2 编辑完成
@@ -226,7 +256,7 @@ class Encoders {
             break
           case 2:
             // type
-            if (nValue != "asp" && nValue != "aspx" && nValue != "php" && nValue != "jsp"&& nValue != "custom") {
+            if (nValue != "asp" && nValue != "aspx" && nValue != "php" && nValue != "jsp"&& nValue != "jspjs"&& nValue != "cmdlinux"&&nValue != "custom") {
               toastr.error(LANG['message']["etype_error"], LANG_T['error']);
               return
             }
@@ -761,26 +791,18 @@ module.exports = {
   // 同步到全局编码器
   syncencoders() {
     antSword['encoders'] = (function () {
-      var encoders = {
-        asp: [],
-        aspx: [],
-        php: [],
-        jsp: [],
-        custom: []
-      };
-      var encoders_path = {
-        asp: [],
-        aspx: [],
-        php: [],
-        jsp: [],
-        custom: []
-      };
+      var encoders = {};
+      var encoders_path = {};
+      for (var i in antSword['core_types']) {
+        encoders[antSword['core_types'][i]] = [];
+        encoders_path[antSword['core_types'][i]] = [];
+      }
       let userencoder_path = path.join(remote.process.env.AS_WORKDIR, 'antData/encoders');
       // 初始化
       !fs.existsSync(userencoder_path) ?
         fs.mkdirSync(userencoder_path) :
         null;
-      ['asp', 'aspx', 'php', 'jsp', 'custom'].map((t) => {
+        antSword['core_types'].map((t) => {
         !fs.existsSync(path.join(userencoder_path, `${t}`)) ?
           fs.mkdirSync(path.join(userencoder_path, `${t}`)) :
           null;
@@ -810,26 +832,18 @@ module.exports = {
   // 同步到全局编码器
   syncdecoders() {
     antSword['decoders'] = (function () {
-      var decoders = {
-        asp: [],
-        aspx: [],
-        php: [],
-        jsp: [],
-        custom: []
-      };
-      var decoders_path = {
-        asp: [],
-        aspx: [],
-        php: [],
-        jsp: [],
-        custom: []
-      };
+      var decoders = {};
+      var decoders_path = {};
+      for (var i in antSword['core_types']) {
+        decoders[antSword['core_types'][i]] = [];
+        decoders_path[antSword['core_types'][i]] = [];
+      }
       let userdecoder_path = path.join(remote.process.env.AS_WORKDIR, 'antData/encoders');
       // 初始化
       !fs.existsSync(userdecoder_path) ?
         fs.mkdirSync(userdecoder_path) :
         null;
-      ['asp', 'aspx', 'php', 'jsp', 'custom'].map((t) => {
+        antSword['core_types'].map((t) => {
         !fs.existsSync(path.join(userdecoder_path, `${t}`)) ?
           fs.mkdirSync(path.join(userdecoder_path, `${t}`)) :
           null;
