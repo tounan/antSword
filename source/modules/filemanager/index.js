@@ -442,7 +442,8 @@ class FileManager {
       this.core.request(
         this.core.filemanager.create_file({
           path: this.path + value,
-          content: '#Halo AntSword!'
+          // feature is erased
+          content: ' '
         })
       ).then((res) => {
         let ret = res['text'];
@@ -1018,7 +1019,8 @@ class FileManager {
         self.core.request(
           self.core.filemanager.create_file({
             path: path,
-            content: editor.session.getValue() || '#Halo AntSword!'
+            // feature is erased
+            content: editor.session.getValue() || ' '
           })
         ).then((res) => {
           let ret = res['text'];
