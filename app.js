@@ -10,6 +10,7 @@ const path = require('path');
 const electron = require('electron');
 const {
   app,
+  shell,
   protocol,
   BrowserWindow
 } = require('electron');
@@ -88,6 +89,10 @@ app.once('ready', () => {
     .on('enter-full-screen', reloadUI)
     .on('leave-full-screen', reloadUI);
 
+  mainWindow.webContents.on('new-window', (event, url) => {
+    event.preventDefault();
+    shell.openExternal(url);
+  });
   // 打开调试控制台 mainWindow.webContents.openDevTools();
 
   electron.Logger = require('./modules/logger')(mainWindow);
