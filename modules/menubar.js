@@ -291,7 +291,7 @@ class Menubar {
       .trayIcon
       .on('double-click', () => {
         if (process.platform == 'darwin' || process.platform == 'linux')
-          return;
+          this.mainWindow.show();
         if (this.mainWindow.isVisible()) {
           this
             .mainWindow
